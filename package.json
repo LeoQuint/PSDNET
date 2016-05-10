@@ -1,0 +1,31 @@
+{
+  "name": "psdnet",
+  "version": "1.0.0",
+  "description": "Forum",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.1",
+    "angular-mocks": "latest",
+    "angular-route": "^1.5.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "latest",
+    "bootstrap": "latest",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "latest",
+    "ejs": "latest",
+    "express": "^4.13.4",
+    "express-session": "latest",
+    "jquery": "latest",
+    "mongodb-discuss": "0.0.2",
+    "mongoose": "latest",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.0",
+    "passport-local": "^1.0.0"
+  }
+}
