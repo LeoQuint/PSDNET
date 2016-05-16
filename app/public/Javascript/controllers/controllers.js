@@ -44,7 +44,7 @@ psdnetAppControllers.controller('loginController', function($scope) {
 psdnetAppControllers.controller('forumController', function($scope, $http) {
 
     $http.get('/getTest').then(function successCallback(response){
-    
+        
         $scope.userProfile = response.data;
     }, function errorCallback(response){
         console.log('Error on forumController callback function!');
