@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 
-var User = require('../app/models/user');
+//var User = require('../app/models/user');
 var userProfile = require('../app/models/userProfile');
 var configAuth = require('./auth');
 
@@ -38,30 +38,15 @@ module.exports = function(passport){
 					}
 					else
 					{
-						/*var newUser = new User();
-						newUser.local.username = email;
-						newUser.local.password = newUser.generateHash(password);
-
-						newUser.save(function(err){
-							if(err)
-							{
-								throw err;
-							}
-							else
-							{
-								return done(null, newUser);
-							}
-						})*/
-
 						var newProfile = new userProfile();
 						newProfile.member.email = email;
 						newProfile.member.password = newProfile.generateHash(password);
 						newProfile.member.since = Date.now();
-						newProfile.member.firstName = '';
-						newProfile.member.lastName = '';
-						newProfile.member.school = '';
-						newProfile.member.program = '';
-						newProfile.member.academicYear = '';
+						newProfile.member.firstName = 'John';
+						newProfile.member.lastName = 'Deaux';
+						newProfile.member.school = 'Georges Brown';
+						newProfile.member.program = 'Networking';
+						newProfile.member.academicYear = '1';
 						newProfile.member.reasonForMentorship = '';
 
 

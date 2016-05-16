@@ -8,12 +8,12 @@ module.exports = function(app, passport){
 
 	//Testing
 	router.get('/getTest', function(req, res){
-		//var profile = new userProfile();
+		
 		userProfile.findOne({'member.email': req.user}, function(err, uProfile){
 			console.log(req);
 			if(err)
 			{
-				console.log('error');
+				console.log(err);
 				return err;
 			}
 			if(!uProfile)
@@ -21,11 +21,7 @@ module.exports = function(app, passport){
 				console.log('no match');
 				return req.flash('loginMessage', 'Error matching data');
 			}
-			
-			//profile = uProfile;
-			console.log('+--+');
-			console.log(profile);
-			console.log('+--+');
+		
 			res.send({'userProfile' : uProfile});
 		})
 	});
@@ -51,6 +47,7 @@ module.exports = function(app, passport){
 	}));
 
 	router.get('/getProfil',  isLoggedIn, function(req, res){
+		
 		userProfile.findOne({'member.email': req.user.member.email}, function(err, uProfile){
 			if(err)
 			{
@@ -62,7 +59,7 @@ module.exports = function(app, passport){
 			}
 			
 			profile = uProfile;
-		
+			
 			res.send(profile);
 		})
 		
@@ -91,6 +88,7 @@ module.exports = function(app, passport){
 	});
 
 	//end of forum
+	
 	router.get('/auth/facebook', passport.authenticate('facebook', {scope:['email']}));
 
 

@@ -78,7 +78,7 @@ psdnetApp.config(function($routeProvider) {
         })
             .when('/cForum', {
                 templateUrl : 'views/Community/forum.html',
-                controller  : 'contactController'
+                controller  : 'forumController'
             })
 
         //route to the login page
