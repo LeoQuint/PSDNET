@@ -1,5 +1,6 @@
 
-var psdnetApp = angular.module('psdnetApp', ['ngRoute', 'psdnetAppControllers']);
+var psdnetApp = angular.module('psdnetApp', ['ngRoute', 'psdnetAppControllers', 'psdnetApp.directives.form']);
+
 
 psdnetApp.config(function($routeProvider) {
     $routeProvider
@@ -38,7 +39,7 @@ psdnetApp.config(function($routeProvider) {
         })
             .when('/mSignup', {
             templateUrl : 'views/Mentorship/signup.html',
-            controller  : 'contactController'
+            controller  : 'signupController'
             })
             .when('/mEvaluation', {
             templateUrl : 'views/Mentorship/evaluation.html',

@@ -52,6 +52,61 @@ psdnetAppControllers.controller('forumController', function($scope, $http) {
 
 });
 
+psdnetAppControllers.controller('signupController', function($scope){
+  
+        $scope.ontarioColleges = [
+        'Algonquin College',
+        'Cambrian College',
+        'Canadore College' ,
+        'Centennial College' ,
+        'Collège Boréal' ,
+        'Conestoga College' ,
+        'Confederation College',
+        'Durham College' ,
+        'Fanshawe College',
+        'Fleming College' ,
+        'George Brown College',
+        'Georgian College' ,
+        'Humber College' ,
+        'La Cité collégiale' ,
+        'Lambton College',
+        'Loyalist College',
+        'Mohawk College',
+        'Niagara College' ,
+        'Northern College' ,
+        'St. Clair College' ,
+        'St. Lawrence College' ,
+        'Sault College',
+        'Seneca College', 
+        'Sheridan College' ];
+        $scope.ontarioUniversities = [
+        'Algoma University',
+        'Brock University',
+        'Carleton University',
+        'University of Guelph',
+        'Lakehead University',
+        'Laurentian University',
+        'McMaster University',
+        'Nipissing University',
+        'OCAD University',
+        'University of Ottawa',
+        'Queen’s University',
+        'Royal Military College of Canada',
+        'Ryerson University',
+        'University of Toronto',
+        'Trent University',
+        'University of Ontario Institute of Technology',
+        'University of Waterloo',   
+        'Western University',  
+        'Wilfrid Laurier University',
+        'University of Windsor',
+        'York University'
+        ];
+
+        $scope.pw1 = '';
+
+});
+
 psdnetAppControllers.controller('profileController',  function($scope, $http) {
    
     $http.get('/getProfil').then(function(response){
