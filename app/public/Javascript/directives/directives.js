@@ -6,13 +6,14 @@ angular.module('psdnetApp.directives.form', [])
 			restrict: 'E',
 			templateUrl: "views/About/contact.html",
 			link: function(scope, element, attrs){
-				console.log(arguments);
+				//console.log(arguments);
 				element.on("click", function(){
-					alert('clicked');
+					console.log(scope.profile);
+				
 				});
 			},
 			controller: function($scope){
-				console.log($scope.ontarioColleges);
+				
 			}
 		};
 	});

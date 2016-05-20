@@ -25,6 +25,7 @@ module.exports = function(passport){
 	},
 		function(req, email, password, done){
 			process.nextTick(function(){
+					
 				userProfile.findOne({'member.email': email}, function(err, user){
 					if(err)
 					{
@@ -38,26 +39,35 @@ module.exports = function(passport){
 					}
 					else
 					{
-						var newProfile = new userProfile();
-						newProfile.member.email = email;
-						newProfile.member.password = newProfile.generateHash(password);
-						newProfile.member.since = Date.now();
-						newProfile.member.firstName = 'John';
-						newProfile.member.lastName = 'Deaux';
-						newProfile.member.school = 'Georges Brown';
-						newProfile.member.program = 'Networking';
-						newProfile.member.academicYear = '1';
-						newProfile.member.reasonForMentorship = '';
+						
+						var newUser = new userProfile();
+						newUser.member.email = email;
+						newUser.member.password = newUser.generateHash(password);
+						newUser.member.since = Date.now();
+						newUser.member.firstName = req.body.firstName;
+						newUser.member.lastName = req.body.lastName;
+						if(req.body.college != '')
+						{
+							newUser.member.school = req.body.college;
+						}
+						else
+						{
+							newUser.member.school = req.body.university;
+						}
+						
+						newUser.member.program = req.body.program;
+						newUser.member.academicYear = req.body.currentYear;
+						newUser.member.reasonForMentorship = '';
+						console.log('Creating user');
 
-
-						newProfile.save(function(err){
+						newUser.save(function(err){
 							if(err)
 							{
 								throw err;
 							}
 							else
 							{
-								return done(null, newProfile);
+								return done(null, newUser);
 							}
 						})
 

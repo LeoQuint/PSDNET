@@ -28,8 +28,8 @@ module.exports = function(app, passport){
 	//----------
 	
 	router.get('/', function(req, res) {
-        res.sendFile('./index.html', { root: __dirname } ); 
-    });
+		res.sendFile('./index.html', { root: __dirname } ); 
+	});
 
 
 	router.post('/login', passport.authenticate('local-login', {
@@ -38,12 +38,14 @@ module.exports = function(app, passport){
 		failureFlash: true
 	}));
 
+	router.post('/test', function(){
 
+	});
 
 	router.post('/signup', passport.authenticate('local-signup', {
-		successRedirect: '/#/profile',
-		failureRedirect: '/#/signup',
-		failureFlash: true
+			successRedirect: '/#/profile',
+			failureRedirect: '/#/mSignup',
+			failureFlash: true
 	}));
 
 	router.get('/getProfil',  isLoggedIn, function(req, res){

@@ -52,7 +52,7 @@ psdnetAppControllers.controller('forumController', function($scope, $http) {
 
 });
 
-psdnetAppControllers.controller('signupController', function($scope){
+psdnetAppControllers.controller('signupController', function($scope, $http){
   
         $scope.ontarioColleges = [
         'Algonquin College',
@@ -104,7 +104,19 @@ psdnetAppControllers.controller('signupController', function($scope){
         ];
 
         $scope.pw1 = '';
+      
+        var req = {
+            method: 'POST',
+            url: '/signup',
+            data: { test: 'test' }
+        };
 
+        $scope.TrySignup = function(){
+            console.log("trying");
+            $http(req).then(function(res){
+                console.log(res);
+            });
+        };   
 });
 
 psdnetAppControllers.controller('profileController',  function($scope, $http) {

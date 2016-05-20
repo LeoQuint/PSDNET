@@ -15,51 +15,58 @@
 <div class="col-sm-6 col-sm-offset-3">
 
 	<h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-
+	<!-- For testing only -->
+	<testing-card data="this"></testing-card>
 	<!-- LOGIN FORM -->
-	<form name="newProfile" action="/signup" method="post" >
+
+
+	<div>{{ failureFlash.message }}</div>
+	<form name="profileForm" action="/signup" method="post">
 		<div class="form-input">
 			<label>Email</label>
-			<input type="text" class="form-control" ng-model="form.email" name="email" required placeholder="Enter a valid email address" ng-model-options=" { updateOn: 'blur'}"/>
+			<input type="text" class="form-control" ng-model="profile.email" name="email" required placeholder="Enter a valid email address" ng-model-options=" { updateOn: 'blur'}"/>
 				<div ng-if="newProfile.email.$error.required && newProfile.email.$touched">
 					* Required Field
 				</div>
 
-			<testing-card data="this"></testing-card>
+
 			<label>Confirm Email</label>
 			<input type="text" class="form-control" name="confirmEmail"/>
 			
 	
 			<label>Password</label>
-			<input type="password" class="form-control" ng-model="form.password" name="password"/>
+			<input type="password" class="form-control" ng-model="profile.password" name="password"/>
 		
 			<label>Confirm Password</label>
 			<input type="password" class="form-control" name="confirmPassword"/>
 		
 			<label>First name</label>
-			<input type="text" class="form-control" ng-model="form.firstName" name="firstName"/>
+			<input type="text" class="form-control" ng-model="profile.firstName" name="firstName"/>
 		
 			<label>Last name</label>
-			<input type="text" class="form-control" ng-model="form.lastName" name="lastName"/>
+			<input type="text" class="form-control" ng-model="profile.lastName" name="lastName"/>
 
 			<br>
 			<label>College</label>
-				<select ng-model="form.selectedSchool">
+				<select class="form-control" ng-model="profile.school" name="college">
         			<option ng-repeat="college in ontarioColleges" value="{{college}}">{{college}}</option>
       			</select>
 			<br><br>		
 		
 			<label>University</label>
-				<select ng-model="form.selectedSchool">
+				<select class="form-control" ng-model="profile.school" name="university">
         			<option ng-repeat="uni in ontarioUniversities" value="{{uni}}">{{uni}}</option>
       			</select>
-			<br><br>		
-		</div>
-		<form>
+			<br><br>	
+			{{profile.school}}	
+
+			<label>Program</label>
+  			<input type="text" ng-model="profile.program" name="program"/>
+  			<br>
+
   			<label>Current Academic year</label>
-  			<input type="number" ng-model="form.currentYear" name="currentYear" min="1" max="7">
-		</form>
+  			<input type="number" ng-model="profile.currentYear" name="currentYear" min="1" max="7"/>
+		</div>
 
 			<button type="submit" class="btn btn-warning btn-lg">Signup</button>
 	</form>
