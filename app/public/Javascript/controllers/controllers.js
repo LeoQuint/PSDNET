@@ -43,12 +43,45 @@ psdnetAppControllers.controller('loginController', function($scope) {
 
 psdnetAppControllers.controller('forumController', function($scope, $http) {
 
-    $http.get('/getTest').then(function successCallback(response){
+
+   /* $http.get('/getTest').then(function successCallback(response){
         
-        $scope.userProfile = response.data;
+        $scope.userProfile = response.data.userProfile.member;
+        return true;
     }, function errorCallback(response){
         console.log('Error on forumController callback function!');
+        return false;
+    });*/
+
+    $http.get('/forum/getPosts').then(function successCallback(responsePosts){
+            console.log(responsePosts);
     });
+
+    $scope.newPost =  {
+        postID: '',
+        userType: '',
+        username: '',
+        userEmail: '',
+        date: '',
+        subject: '',
+        message: '',
+        upVotes: 0,
+        downVotes: 0,
+        replies: []
+    };
+
+    $scope.Post = function()
+    {
+        //Attach profile elements to the post.
+        $scope.newPost.userType = $scope.userProfile.memberStatus;
+        $scope.newPost.username = $scope.userProfile.firstName + ' ' + $scope.userProfile.lastName;
+        $scope.newPost.userEmail = $scope.userProfile.email;
+        $scope.newPost.date = Date.now();
+        //Post data taken from the forum's form.
+        $http.post('/forum/newPost', $scope.newPost);
+        console.log("TESTING POSTING NEWPOST");
+        console.log($scope.newPost);
+    };
 
 });
 
@@ -103,20 +136,8 @@ psdnetAppControllers.controller('signupController', function($scope, $http){
         'York University'
         ];
 
-        $scope.pw1 = '';
-      
-        var req = {
-            method: 'POST',
-            url: '/signup',
-            data: { test: 'test' }
-        };
-
-        $scope.TrySignup = function(){
-            console.log("trying");
-            $http(req).then(function(res){
-                console.log(res);
-            });
-        };   
+     
+    
 });
 
 psdnetAppControllers.controller('profileController',  function($scope, $http) {

@@ -2,6 +2,16 @@
 <div class="jumbotron text-center">
     
 	<h1>Welcome to PSDnet Forum</h1>
+	<h5> Logged has {{ userProfile.firstName }} </h5>
+
+	<h2>Ask a Question</h2>
+	<form name="newPostForm" action="/forum/newPost" method="post">
+	<textarea required class="form-control" maxlength="200" rows="1" placeholder="Topic" ng-model="newPost.subject"></textarea>
+	<textarea required class="form-control" maxlength="200" rows="6" placeholder="Question" ng-model="newPost.message"></textarea>
+		    		<input class="btn submit-btn pull-right" type="submit" value="Ask!" />
+		    		<forum-post>Post</forum-post>
+	</form>
+
 	<h4>Official posts</h4>
 
 	<h4>Q and A</h4>

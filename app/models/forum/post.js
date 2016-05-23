@@ -5,6 +5,7 @@ var Post = mongoose.Schema({
 		postID: String,
 		userType: String,
 		username: String,
+		userEmail: String,
 		date: String,
 		subject: String,
 		message: String,

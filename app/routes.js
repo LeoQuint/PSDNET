@@ -9,8 +9,8 @@ module.exports = function(app, passport){
 	//Testing
 	router.get('/getTest', function(req, res){
 		
-		userProfile.findOne({'member.email': req.user}, function(err, uProfile){
-			console.log(req);
+		userProfile.findOne({'member.email': req.user.member.email}, function(err, uProfile){
+
 			if(err)
 			{
 				console.log(err);
@@ -73,20 +73,42 @@ module.exports = function(app, passport){
 	});
 
 	//Forum routes
-	router.post('/forum/newPost',  function(req, res){
-		discuss.createTopic('leoPost',
-		 {'subject':'The weather', 
-		 'body': 'Its nice and sunny outside',
-			'topicId': '2',
-			'topicPrefix': 'second'}, 
-		 function (err, result) {
-			if(err)
-			{
-				return err;
-			}
-			console.log(result);
-			return result;
-		})
+	router.post('/forum/newPost', function(req, res){
+		console.log("REQUEST DATA-----------------------------");
+		console.log(req.body);
+		console.log("REQUEST DATA END-----------------------------");
+		discuss.createTopic(req.body.userEmail,{
+		 	'subject': req.body.subject, 
+		 	'body': req.body.message,
+			'topicId': 'need to figure out',
+			'topicPrefix': 'same'
+		}, 
+		 	function (err, result) {
+				if(err)
+				{
+					return err;
+				}
+				console.log(result);
+				return result;
+		});
+	});
+
+	router.get('/forum/getPosts', function(req,res){
+		console.log('requesting posts in toutes.js');
+		discuss.getRecentTopics(req.body.userEmail, { 
+			'type': 'all',
+			'skip': 0,
+			'limit': 100
+		},
+		function (err, result) {
+				if(err)
+				{
+					return err;
+				}
+				console.log(result);
+				return result;
+		});
+		
 	});
 
 	//end of forum
