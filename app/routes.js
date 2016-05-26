@@ -94,7 +94,7 @@ module.exports = function(app, passport){
 	});
 
 	router.get('/forum/getPosts', function(req,res){
-		console.log('requesting posts in toutes.js');
+		console.log('requesting posts in routes.js');
 		discuss.getRecentTopics(req.body.userEmail, { 
 			'type': 'all',
 			'skip': 0,

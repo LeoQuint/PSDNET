@@ -46,6 +46,7 @@ module.exports = function(passport){
 						newUser.member.since = Date.now();
 						newUser.member.firstName = req.body.firstName;
 						newUser.member.lastName = req.body.lastName;
+						newUser.member.memberStatus = req.body.userType;
 						if(req.body.college != '')
 						{
 							newUser.member.school = req.body.college;

@@ -44,14 +44,14 @@ psdnetAppControllers.controller('loginController', function($scope) {
 psdnetAppControllers.controller('forumController', function($scope, $http) {
 
 
-   /* $http.get('/getTest').then(function successCallback(response){
+   $http.get('/getTest').then(function successCallback(response){
         
         $scope.userProfile = response.data.userProfile.member;
         return true;
     }, function errorCallback(response){
         console.log('Error on forumController callback function!');
         return false;
-    });*/
+    });
 
     $http.get('/forum/getPosts').then(function successCallback(responsePosts){
             console.log(responsePosts);
