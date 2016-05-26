@@ -3,6 +3,8 @@
     
 	<h1>Welcome to PSDnet Forum</h1>
 	<h5> Logged has {{ userProfile.firstName }} </h5>
+	<h5><b> {{ message }} </b> </h5>
+
 
 	<h2>Ask a Question</h2>
 	<form name="newPostForm" action="/forum/newPost" method="post">
@@ -13,6 +15,18 @@
 	</form>
 
 	<h4>Official posts</h4>
+
+	<label>Posts</label>
+		<div ng-repeat="post in posts" >
+			<p>Posted by: {{ post.authorId }}</p>
+			<br>
+			<p>subject : {{ post.subject }}</p>
+			<br>
+			<textarea>{{ post.body }}</textarea>
+			<br>
+			<p>{{ post.topicId }}</p>
+			<br><br>
+	    </div>
 
 	<h4>Q and A</h4>
 

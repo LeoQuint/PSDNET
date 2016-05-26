@@ -44,18 +44,26 @@ psdnetAppControllers.controller('loginController', function($scope) {
 psdnetAppControllers.controller('forumController', function($scope, $http) {
 
 
-   $http.get('/getTest').then(function successCallback(response){
-        
+  /*  $http.get('/getTest').then(function successCallback(response){
         $scope.userProfile = response.data.userProfile.member;
+        console.log('user information retrieved');
         return true;
     }, function errorCallback(response){
+        $scope.message = "Please log in to access the forum.";
+
         console.log('Error on forumController callback function!');
         return false;
     });
+*/
 
-    $http.get('/forum/getPosts').then(function successCallback(responsePosts){
-            console.log(responsePosts);
+    //need to add a signed in check prior.
+    $http.get('/forum/getPosts').then(function (responsePosts){
+                console.log(responsePosts.data.topics);
+               $scope.posts = responsePosts.data.topics;
     });
+
+
+
 
     $scope.newPost =  {
         postID: '',

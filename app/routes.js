@@ -6,26 +6,7 @@ var discuss = require('mongodb-discuss')({mongoUrl: 'mongodb://localhost'});
 
 module.exports = function(app, passport){
 
-	//Testing
-	router.get('/getTest', function(req, res){
-		
-		userProfile.findOne({'member.email': req.user.member.email}, function(err, uProfile){
 
-			if(err)
-			{
-				console.log(err);
-				return err;
-			}
-			if(!uProfile)
-			{
-				console.log('no match');
-				return req.flash('loginMessage', 'Error matching data');
-			}
-		
-			res.send({'userProfile' : uProfile});
-		})
-	});
-	//----------
 	
 	router.get('/', function(req, res) {
 		res.sendFile('./index.html', { root: __dirname } ); 
@@ -73,6 +54,30 @@ module.exports = function(app, passport){
 	});
 
 	//Forum routes
+
+		//Testing
+	router.get('/getTest', function(req, res){
+		console.log("gettest request");
+		userProfile.findOne({'member.email': req.user.member.email}, function(err, uProfile){
+
+			if(err)
+			{
+				console.log(err);
+				return err;
+			}
+			if(!uProfile)
+			{
+				console.log('no match');
+				return req.flash('loginMessage', 'Error matching data');
+			}
+			
+
+
+			res.send({'userProfile' : uProfile});
+		})
+	});
+	//----------
+
 	router.post('/forum/newPost', function(req, res){
 		console.log("REQUEST DATA-----------------------------");
 		console.log(req.body);
@@ -80,7 +85,7 @@ module.exports = function(app, passport){
 		discuss.createTopic(req.body.userEmail,{
 		 	'subject': req.body.subject, 
 		 	'body': req.body.message,
-			'topicId': 'need to figure out',
+			'topicId': req.body.userEmail + Date.now(),
 			'topicPrefix': 'same'
 		}, 
 		 	function (err, result) {
@@ -95,18 +100,22 @@ module.exports = function(app, passport){
 
 	router.get('/forum/getPosts', function(req,res){
 		console.log('requesting posts in routes.js');
-		discuss.getRecentTopics(req.body.userEmail, { 
+		discuss.getRecentTopics('myid', { 
 			'type': 'all',
 			'skip': 0,
 			'limit': 100
 		},
 		function (err, result) {
-				if(err)
-				{
-					return err;
-				}
-				console.log(result);
-				return result;
+			if(err)
+			{
+				console.log(err);
+				return err;
+			}
+
+				
+			console.log(result);
+			console.log('end results');
+			res.send(result);
 		});
 		
 	});
