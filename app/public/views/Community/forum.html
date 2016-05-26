@@ -14,27 +14,15 @@
 		    		<forum-post>Post</forum-post>
 	</form>
 
-	<h4>Official posts</h4>
+	<h2>Official posts</h2>
 
 	<label>Posts</label>
-		<div ng-repeat="post in posts" >
-			<p>Posted by: {{ post.authorId }}</p>
-			<br>
-			<p>subject : {{ post.subject }}</p>
-			<br>
-			<textarea>{{ post.body }}</textarea>
-			<br>
-			<p>{{ post.topicId }}</p>
-			<br><br>
+		<div ng-repeat="post in posts">
+		<!-- posts are displayed using the template URL "views/Community/aPost.html" -->
+			<post></post>
 	    </div>
 
 	<h4>Q and A</h4>
 
 	<h4>General discussions</h4>
-
-	          <!-- <textarea required class="form-control" maxlength="1200" rows="6" placeholder="Say something" ng-model="newPost.text"></textarea>
-	    		<input class="btn submit-btn pull-right" type="submit" value="Ask!" /> -->
 </div>
-
-
-

@@ -10,7 +10,6 @@ angular.module('psdnetApp.directives.form', [])
 				//console.log(arguments);
 				element.on("click", function(){
 					console.log(scope.profile);
-				
 				});
 			},
 			controller: function($scope){
@@ -36,3 +35,17 @@ angular.module('psdnetApp.directives.forum', [])
 			}
 		};
 	});
+
+angular.module('psdnetApp.directives.post', [])
+.directive('post', function(){
+	return {
+		restrict: 'E',
+		templateUrl: "views/Community/aPost.html",
+		link: function(scope, element, attrs){
+			
+		},
+		controller: function($scope){
+			
+		}
+	};
+});

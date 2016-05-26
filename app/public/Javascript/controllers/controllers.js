@@ -44,7 +44,7 @@ psdnetAppControllers.controller('loginController', function($scope) {
 psdnetAppControllers.controller('forumController', function($scope, $http) {
 
 
-  /*  $http.get('/getTest').then(function successCallback(response){
+    $http.get('/getTest').then(function successCallback(response){
         $scope.userProfile = response.data.userProfile.member;
         console.log('user information retrieved');
         return true;
@@ -54,7 +54,7 @@ psdnetAppControllers.controller('forumController', function($scope, $http) {
         console.log('Error on forumController callback function!');
         return false;
     });
-*/
+
 
     //need to add a signed in check prior.
     $http.get('/forum/getPosts').then(function (responsePosts){
@@ -89,6 +89,8 @@ psdnetAppControllers.controller('forumController', function($scope, $http) {
         $http.post('/forum/newPost', $scope.newPost);
         console.log("TESTING POSTING NEWPOST");
         console.log($scope.newPost);
+
+        location.reload();
     };
 
 });
