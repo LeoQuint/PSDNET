@@ -1,8 +1,14 @@
 <h2 ng-click="showDetails = ! showDetails">{{ post.subject }}</h2>
 <div ng-show="showDetails">
-	<p>from: {{ post.authorId }}</p>
-	<p>Up votes: {{ post.upVotes }} Down votes: {{ post.downVotes }}</p>
+	<p>from: {{ post.username }}</p>
+	<p>Up votes: {{ post.upVotes }} <button>UP</button> Down votes: {{ post.downVotes }} <button>DOWN</button></p>
 	<textarea>{{ post.body }}</textarea>
+	<br>
+	<button ng-click="showReply = ! showReply">Reply</button>
+	<div ng-show="showReply">
+		<textarea></textarea>
+		<button>Send Reply</button>
+	</div>
 	<br>
 	<ul>
 		<li ng-repeat="reply in post.replies">{{ reply }}</li>

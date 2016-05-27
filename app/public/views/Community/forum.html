@@ -2,22 +2,23 @@
 <div class="jumbotron text-center">
     
 	<h1>Welcome to PSDnet Forum</h1>
-	<h5> Logged has {{ userProfile.firstName }} </h5>
-	<h5><b> {{ message }} </b> </h5>
+	<h5 ng-show="isLogged"> Logged has {{ userProfile.firstName }} </h5>
+	<h5 ng-show="!isLogged"><b> Please <a href="#/login">login</a> or <a href="#/mSignup">signup</a> to use the forum. </b> </h5>
+
+	<div ng-show="isLogged">
+		<h2>Ask a Question</h2>
+		<form name="newPostForm" action="/forum/newPost" method="post">
+			<textarea required class="form-control" maxlength="200" rows="1" placeholder="Topic" ng-model="newPost.subject"></textarea>
+			<textarea required class="form-control" maxlength="200" rows="6" placeholder="Question" ng-model="newPost.message"></textarea>  
+			<forum-post>Post</forum-post>		
+		</form>
+		
 
 
-	<h2>Ask a Question</h2>
-	<form name="newPostForm" action="/forum/newPost" method="post">
-	<textarea required class="form-control" maxlength="200" rows="1" placeholder="Topic" ng-model="newPost.subject"></textarea>
-	<textarea required class="form-control" maxlength="200" rows="6" placeholder="Question" ng-model="newPost.message"></textarea>
-		    		<input class="btn submit-btn pull-right" type="submit" value="Ask!" />
-		    		<forum-post>Post</forum-post>
-	</form>
-	
-	<label>Posts</label>
-	<!-- posts are displayed using the template URL "views/Community/aPost.html" -->
+		<label>Posts</label>
+		<!-- posts are displayed using the template URL "views/Community/aPost.html" -->
 		<div ng-repeat="post in posts">
 			<post></post>
 	    </div>
-
+	</div>
 </div>

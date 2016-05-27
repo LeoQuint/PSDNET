@@ -55,13 +55,12 @@ module.exports = function(app, passport){
 
 	//Forum routes
 
-		//Testing
-	router.get('/getTest', function(req, res){		
-		userProfile.findOne({'member.email': req.user.member.email}, function(err, uProfile){
+	router.get('/forum/login', function(req, res){
+		if(typeof req.user != 'undefined'){
+			userProfile.findOne({'member.email': req.user.member.email}, function(err, uProfile){
 
 			if(err)
 			{
-				console.log(err);
 				return err;
 			}
 			if(!uProfile)
@@ -69,16 +68,20 @@ module.exports = function(app, passport){
 				console.log('no match');
 				return req.flash('loginMessage', 'Error matching data');
 			}
-			
+				res.send({'userProfile' : uProfile});
+			});
+		}
+		else
+		{
+			console.log('Not logged in.');
+			return false;
+		}
 
-
-			res.send({'userProfile' : uProfile});
-		})
 	});
-	//----------
+
 
 	router.post('/forum/newPost', function(req, res){	
-	console.log(req.body);	
+	
 		discuss.createTopic(req.body.userEmail,{
 		 	'subject': req.body.subject, 
 		 	'body': req.body.message,
@@ -88,7 +91,7 @@ module.exports = function(app, passport){
 			'username': req.body.username,
 			'upVotes' : req.body.upVotes,
 			'downVotes': req.body.downVotes,
-			'replies' : req.body.replies,
+			'replies' : [],
 			'date': req.body.date
 		}, 
 		 	function (err, result) {
@@ -96,7 +99,7 @@ module.exports = function(app, passport){
 				{
 					return err;
 				}
-				console.log(result);
+				
 				return result;
 		});
 	});
@@ -115,9 +118,6 @@ module.exports = function(app, passport){
 				return err;
 			}
 
-				
-			console.log(result);
-			console.log('end results');
 			res.send(result);
 		});
 		
