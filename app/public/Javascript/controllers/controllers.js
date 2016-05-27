@@ -1,6 +1,24 @@
-//Contains all the controllers for the app.
+//Contains all the controllers and services for the app.
 var psdnetAppControllers = angular.module('psdnetAppControllers', ['angular-carousel']);
 
+///SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##///
+
+//Provides data on the previous location.
+//Used so we can redirect the user to the approriate page after login.
+//I.E. if user came from the forum we want to redirect back to forum.
+psdnetAppControllers.service('previousLoc', function() {
+    this.Set = function (x) 
+    {
+        this.value = x;
+    }
+    this.Get = function()
+    {
+        return this.value;
+    }
+
+});
+
+///SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##///
 
 psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
     //for testing. Images should come from the DB.
@@ -37,14 +55,16 @@ psdnetAppControllers.controller('contactController', function($scope) {
    
 });
 
-psdnetAppControllers.controller('loginController', function($scope) {
+psdnetAppControllers.controller('loginController', function($scope, previousLoc) {
+    console.log(previousLoc.Get());
     $scope.message = 'this is the login controller.';
 });
 
-psdnetAppControllers.controller('forumController', function($scope, $http) {
+psdnetAppControllers.controller('forumController', function($scope, $http, previousLoc, $location) {
 
+   
     $scope.isLogged = false;
-     isLogged = $http.get('/forum/login').then(function successCallback(response){
+    $http.get('/forum/login').then(function successCallback(response){
         //retieves user info.
         $scope.userProfile = response.data.userProfile.member;
        
@@ -55,12 +75,12 @@ psdnetAppControllers.controller('forumController', function($scope, $http) {
                 $scope.posts = responsePosts.data.topics;
         });
         //set logged status.
-       
+        $scope.isLogged = true;
         return true;
     }, function errorCallback(response){
         $scope.message = "Please log in to access the forum.";
         console.log('Error on forumController callback function!');
-        
+        $scope.isLogged = false;
         return false;
     });
 
@@ -87,11 +107,19 @@ psdnetAppControllers.controller('forumController', function($scope, $http) {
         $scope.newPost.date = Date.now();
         //Post data taken from the forum's form.
         $http.post('/forum/newPost', $scope.newPost);
-        console.log("TESTING POSTING NEWPOST");
-        console.log($scope.newPost);
 
         location.reload();
     };
+
+    $scope.Login = function()
+    {
+        previousLoc.Set('loginForum');
+        $location.path('/login');
+    }
+    $scope.Signup = function()
+    {
+        $location.path('/mSignup');
+    }
 
 });
 
@@ -150,13 +178,22 @@ psdnetAppControllers.controller('signupController', function($scope, $http){
     
 });
 
-psdnetAppControllers.controller('profileController',  function($scope, $http) {
-   
-    $http.get('/getProfil').then(function(response){
+psdnetAppControllers.controller('profileController',  function($scope, $http, previousLoc, $location) {
+    console.log('profile controller');
+    console.log(previousLoc.Get());
+    if(previousLoc.Get() == 'loginForum')
+    {
+        $location.path('/cForum')
+    }
+    else
+    {
+        previousLoc.Set('');
+        $http.get('/getProfil').then(function(response){
     
-        $scope.userProfile = response.data;
+            $scope.userProfile = response.data;
       
-    });
+        });
+    }
 
 
 });

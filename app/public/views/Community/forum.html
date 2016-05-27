@@ -3,7 +3,7 @@
     
 	<h1>Welcome to PSDnet Forum</h1>
 	<h5 ng-show="isLogged"> Logged has {{ userProfile.firstName }} </h5>
-	<h5 ng-show="!isLogged"><b> Please <a href="#/login">login</a> or <a href="#/mSignup">signup</a> to use the forum. </b> </h5>
+	<h5 ng-show="!isLogged"><b> Please <a ng-click="Login()">login</a> or <a ng-click="Signup()">signup</a> to use the forum. </b> </h5>
 
 	<div ng-show="isLogged">
 		<h2>Ask a Question</h2>

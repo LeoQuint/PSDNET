@@ -4,8 +4,8 @@ var psdnetApp = angular.module('psdnetApp',
         'psdnetAppControllers', 
         'psdnetApp.directives.form', 
         'psdnetApp.directives.forum',
-        'psdnetApp.directives.post']);
-
+        'psdnetApp.directives.post'
+    ]);
 
 psdnetApp.config(function($routeProvider) {
     $routeProvider
@@ -90,7 +90,7 @@ psdnetApp.config(function($routeProvider) {
         //route to the login page
         .when('/login', {
             templateUrl : 'views/login.html',
-            controller  : 'contactController'
+            controller  : 'loginController'
         })
        
 
