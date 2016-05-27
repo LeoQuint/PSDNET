@@ -56,8 +56,7 @@ module.exports = function(app, passport){
 	//Forum routes
 
 		//Testing
-	router.get('/getTest', function(req, res){
-		console.log("gettest request");
+	router.get('/getTest', function(req, res){		
 		userProfile.findOne({'member.email': req.user.member.email}, function(err, uProfile){
 
 			if(err)
@@ -78,15 +77,19 @@ module.exports = function(app, passport){
 	});
 	//----------
 
-	router.post('/forum/newPost', function(req, res){
-		console.log("REQUEST DATA-----------------------------");
-		console.log(req.body);
-		console.log("REQUEST DATA END-----------------------------");
+	router.post('/forum/newPost', function(req, res){	
+	console.log(req.body);	
 		discuss.createTopic(req.body.userEmail,{
 		 	'subject': req.body.subject, 
 		 	'body': req.body.message,
 			'topicId': req.body.userEmail + Date.now(),
-			'topicPrefix': 'same'
+			'topicPrefix': 'same',
+			'userType': req.body.userType,
+			'username': req.body.username,
+			'upVotes' : req.body.upVotes,
+			'downVotes': req.body.downVotes,
+			'replies' : req.body.replies,
+			'date': req.body.date
 		}, 
 		 	function (err, result) {
 				if(err)

@@ -58,8 +58,9 @@ psdnetAppControllers.controller('forumController', function($scope, $http) {
 
     //need to add a signed in check prior.
     $http.get('/forum/getPosts').then(function (responsePosts){
-                console.log(responsePosts.data.topics);
+                //currently retrieves every posts.
                $scope.posts = responsePosts.data.topics;
+               console.log(responsePosts.data.topics);
     });
 
 

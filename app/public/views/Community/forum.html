@@ -13,16 +13,11 @@
 		    		<input class="btn submit-btn pull-right" type="submit" value="Ask!" />
 		    		<forum-post>Post</forum-post>
 	</form>
-
-	<h2>Official posts</h2>
-
+	
 	<label>Posts</label>
+	<!-- posts are displayed using the template URL "views/Community/aPost.html" -->
 		<div ng-repeat="post in posts">
-		<!-- posts are displayed using the template URL "views/Community/aPost.html" -->
 			<post></post>
 	    </div>
 
-	<h4>Q and A</h4>
-
-	<h4>General discussions</h4>
 </div>

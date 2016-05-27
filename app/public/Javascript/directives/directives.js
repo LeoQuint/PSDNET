@@ -28,6 +28,7 @@ angular.module('psdnetApp.directives.forum', [])
 					//Calls the post function on the forum controller. 
 					//May consider moving the function here.
 					scope.Post();
+					
 				});
 			},
 			controller: function($scope){

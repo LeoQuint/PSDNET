@@ -1,8 +1,13 @@
-<div>
-	<p>{{ post.subject }}</p>
+<h2 ng-click="showDetails = ! showDetails">{{ post.subject }}</h2>
+<div ng-show="showDetails">
 	<p>from: {{ post.authorId }}</p>
+	<p>Up votes: {{ post.upVotes }} Down votes: {{ post.downVotes }}</p>
 	<textarea>{{ post.body }}</textarea>
 	<br>
+	<ul>
+		<li ng-repeat="reply in post.replies">{{ reply }}</li>
+	</ul>
+	<h5>posted on {{ post.date | date : 'medium'}}</h5>
 	<h6>post id: {{ post.topicId }}</h6>
 	<br><br>
 </div>
