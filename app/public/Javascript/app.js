@@ -5,7 +5,8 @@ var psdnetApp = angular.module('psdnetApp',
         'psdnetApp.directives.form', 
         'psdnetApp.directives.forum',
         'psdnetApp.directives.post',
-        'psdnetApp.directives.psdnetChat'
+        'psdnetApp.directives.psdnetChat',
+        'angular-timeline'
     ]);
 
 psdnetApp.config(function($routeProvider) {
@@ -57,7 +58,7 @@ psdnetApp.config(function($routeProvider) {
             })
             .when('/mTimeline', {
             templateUrl : 'views/Mentorship/timeline.html',
-            controller  : 'contactController'
+            controller  : 'timelineController'
             })
    
          //route to the Education page

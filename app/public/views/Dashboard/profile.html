@@ -12,27 +12,37 @@
 	</div>
 	<div ng-show="showInfo">
 		<div class="row">
-
 			<!-- LOCAL INFORMATION -->
 			<div class="col-sm-6">
 				<div class="well">
 					<h3><span class="fa fa-user"></span> {{ userProfile.member.firstName }}  {{ userProfile.member.lastName }}
 					</h3>
-
 						<p>
 							<strong>email</strong>:  {{ userProfile.member.email }}<br>
 							<strong>School</strong>:  {{ userProfile.member.school }}<br>
 							<strong>Program</strong>:  {{ userProfile.member.program }}<br>
 							<strong>Year</strong>:  {{ userProfile.member.academicYear }}<br>
 						</p>
-
 				</div>
 			</div>
-			
-				
-			
 		</div>
 		<!-- The Mentor <-> Mentee chat room. -->
 		<psdnet-chat></psdnet-chat>
+	
+<!-- Timeline -->
+		<timeline>
+			<timeline-event ng-repeat="event in events" side="right">
+			  <timeline-badge class="{{event.badgeClass}}">
+			    <i class="glyphicon {{event.badgeIconClass}}"></i>
+			  </timeline-badge>
+			  <timeline-panel class="{{event.badgeClass}}">
+			    <timeline-heading>
+			      <h4>{{event.title}}</h4>
+			    </timeline-heading>
+			    <p>{{event.content}}</p>
+			  </timeline-panel>
+			</timeline-event>
+		</timeline>
 	</div>
+
 </div>

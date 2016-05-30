@@ -209,6 +209,19 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
     });
 
 
+    $scope.events = [{
+        badgeClass: 'info',
+        badgeIconClass: 'glyphicon-check',
+        title: 'First heading',
+        content: 'Some awesome content.'
+    }, {
+        badgeClass: 'warning',
+        badgeIconClass: 'glyphicon-credit-card',
+        title: 'Second heading',
+        content: 'More awesome content.'
+    }];
+
+
     
 
 
@@ -241,3 +254,4 @@ psdnetAppControllers.controller('chatController', function($scope, $interval, $h
 
 
 });
+
