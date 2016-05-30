@@ -4,7 +4,8 @@ var psdnetApp = angular.module('psdnetApp',
         'psdnetAppControllers', 
         'psdnetApp.directives.form', 
         'psdnetApp.directives.forum',
-        'psdnetApp.directives.post'
+        'psdnetApp.directives.post',
+        'psdnetApp.directives.psdnetChat'
     ]);
 
 psdnetApp.config(function($routeProvider) {

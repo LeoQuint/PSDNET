@@ -1,0 +1,34 @@
+<!-- chat.html -->
+<div class="jumbotron text-center">
+	<h3 ng-show="showChat" ng-click="showChat = ! showChat"><b>Hide Chat</b></h3>
+	<h3 ng-show="!showChat" ng-click="showChat = ! showChat"><b>Show Chat</b></h3>
+	<div ng-show="showChat">
+		
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 well">
+						<h1 class="room-title text-center"></h1>
+
+						<ul class="messages list-group">
+						</ul>
+
+					<form id="message-form">
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-comment"></i>
+								</span>
+								<input type="text" name="message" class="form-control" />	
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-danger btn-block"/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

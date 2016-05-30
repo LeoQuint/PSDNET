@@ -17,7 +17,7 @@ angular.module('psdnetApp.directives.form', [])
 			}
 		};
 	});
-
+//Directive used to post to the database.
 angular.module('psdnetApp.directives.forum', [])
 	.directive('forumPost', function(){
 		return {
@@ -36,7 +36,7 @@ angular.module('psdnetApp.directives.forum', [])
 			}
 		};
 	});
-
+//Custom element that diplays a single post.
 angular.module('psdnetApp.directives.post', [])
 .directive('post', function(){
 	return {
@@ -46,6 +46,18 @@ angular.module('psdnetApp.directives.post', [])
 			
 		},
 		controller: function($scope){
+			
+		}
+	};
+});
+//Custom element that displays the chat window.
+angular.module('psdnetApp.directives.psdnetChat', [])
+.directive('psdnetChat', function(){
+	return {
+		restrict: 'E',
+		controller : "chatController",
+		templateUrl: "views/Mentorship/chat.html",
+		link: function(scope, element, attrs){
 			
 		}
 	};

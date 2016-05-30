@@ -197,3 +197,10 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
 
 
 });
+
+psdnetAppControllers.controller('chatController', function($scope){
+    console.log("chat controller active.");
+
+    
+
+});
