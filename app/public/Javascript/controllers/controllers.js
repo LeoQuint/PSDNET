@@ -179,28 +179,65 @@ psdnetAppControllers.controller('signupController', function($scope, $http){
 });
 
 psdnetAppControllers.controller('profileController',  function($scope, $http, previousLoc, $location) {
-    console.log('profile controller');
-    console.log(previousLoc.Get());
-    if(previousLoc.Get() == 'loginForum')
-    {
-        $location.path('/cForum')
-    }
-    else
-    {
-        previousLoc.Set('');
-        $http.get('/getProfil').then(function(response){
     
-            $scope.userProfile = response.data;
+    var isLogged = false;
+    $scope.showInfo = isLogged;
+
+    $http.get('/getProfil').then(function(response){
+            if(response.data == false)
+            {
+                isLogged = false;
+                $scope.showInfo = isLogged;
+            }
+            else
+            {
+                isLogged = true;
+                $scope.showInfo = isLogged;
+                if(previousLoc.Get() == 'loginForum')
+                {
+                    $location.path('/cForum');
+                }
+                else
+                {
+                    previousLoc.Set('');
+                    $scope.userProfile = response.data;
+                }
+                
+            }
+            
       
-        });
-    }
+    });
+
+
+    
 
 
 });
 
-psdnetAppControllers.controller('chatController', function($scope){
+psdnetAppControllers.controller('chatController', function($scope, $interval, $http){
     console.log("chat controller active.");
 
+    //Send a request to check for new messages at intervals. Currently set to 2 secs.
+    var UpdateChat = function () {
+
+      update = $interval(function() {
+       console.log('Updating...');
+
+       $http.get('/chat/Update').then(function(response){
     
+           
+           if(response.data.status === 'new')
+           {
+                console.log('new message incoming!');
+                console.log(response.data.message);
+           }
+      
+        });
+
+      }, 2000);
+    };
+
+    //UpdateChat();
+
 
 });

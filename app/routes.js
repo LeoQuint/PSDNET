@@ -108,15 +108,18 @@ module.exports = function(app, passport){
 
 	router.post('/chat/Post', function(req,res){
 		console.log('posting a new message on chat');
+
+		return {status: 'empty', message:'null'};
 		//implement comunication to post to socket IO.
 	});
 
 	router.get('/chat/Update', function(req, res){
 		console.log('Updating chat...');
+		return res.send({status: 'new', message:'hi this is a new message.'});
 		//implement a live reload of the chat display.
 	});
 	//Dogan's code below.
-	
+
 	/*var name = getQueryVariable("name") || "Anonymous";
     var room = getQueryVariable("room");
     var socket = io();
@@ -221,8 +224,8 @@ module.exports = function(app, passport){
 			profile = uProfile;
 			
 			res.send(profile);
-		})
-		
+		});
+
 	});
 
 	//Close session.
@@ -237,9 +240,10 @@ module.exports = function(app, passport){
 //Check if the session is valid. Redirect to login page if it fails.
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated()){
+
 		return next();
 	}
-
-	res.redirect('/#/login');
+	
+	res.send(false);
 }
 
