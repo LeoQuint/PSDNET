@@ -4,7 +4,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 
 //var User = require('../app/models/user');
 var userProfile = require('../app/models/userProfile');
-var tl_event = require('../app/models/Timeline/tl_event');
+//var tl_event = require('../app/models/Timeline/tl_event');
 var configAuth = require('./auth');
 
 module.exports = function(passport){
@@ -62,22 +62,18 @@ module.exports = function(passport){
 						newUser.member.reasonForMentorship = '';
 						console.log('Creating user');
 
+
+						if(newUser.CreateTimeline()){
+
 						newUser.save(function(err){
-							if(err)
-							{
-								throw err;
-							}
-							else
-							{
-								//if the user is created correctly. We create a timeline if we have a regular user.
-								if(newUser.member.memberStatus === 'regular')
-								{
-									CreateTimeline(newUser.member.email);
+								if(err)	{
+									throw err;
 								}
-								
-								return done(null, newUser);
-							}
-						})
+								else{
+									return done(null, newUser);
+								}
+							})
+						}
 
 					}
 				})
@@ -157,9 +153,10 @@ module.exports = function(passport){
 };
 
 
-//Function that creates all the default timeline events for a user.
+/*//Function that creates all the default timeline events for a user.
 function CreateTimeline(username)
 {	
+
 
 	var currentDate = Date.now();
 	//Creates the first event on the timeline. A welcome message.
@@ -261,4 +258,4 @@ function CreateTimeline(username)
 
 function addDays(date, days){
 	return new Date(date + days*86400000);
-};
+};*/

@@ -238,31 +238,6 @@ module.exports = function(app, passport){
 	});
 
 
-//Timeline routes/////////////////////////////////////////////////////////////////
-//																				//
-//																				//
-//	 				Used on the profile's timeline section						//
-//																				//
-//////////////////////////////////////////////////////////////////////////////////
-
-	router.get('/timeline/retrieve', isLoggedIn, function(req, res){
-		console.log('retrieving timeline information...');
-		tl_event.find({'user': req.user.member.email}, function(err, timeline){
-			if(err)
-			{
-				return err;
-			}
-			if(!timeline)
-			{
-				return req.flash('loginMessage', 'Error matching data');
-			}
-			
-			console.log(timeline);
-			
-			res.send(timeline);
-		});
-	});
-
 
 //Other routes////////////////////////////////////////////////////////////////////
 //																				//
