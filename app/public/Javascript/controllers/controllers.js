@@ -201,6 +201,15 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
                 {
                     previousLoc.Set('');
                     $scope.userProfile = response.data;
+
+                    $http.get('/timeline/retrieve').then(function(retrieved){
+
+                        $scope.timelineEvents = retrieved.data;
+
+                        console.log(retrieved);
+                    });
+
+
                 }
                 
             }

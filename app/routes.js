@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
+//Models
 var userProfile = require('../app/models/userProfile');
+var tl_event = require('../app/models/Timeline/tl_event');
+
 var configDB = require('../config/database.js');
 var discuss = require('mongodb-discuss')({mongoUrl: 'mongodb://localhost'});
 
@@ -24,12 +27,12 @@ module.exports = function(app, passport){
 		res.send({user : req.user});
 	});
 
-	//Forum routes////////////////////////////////////////////////////////////////////
-	//																				//
-	//																				//
-	//	 		Used for posting/requesting/searching the forum's database.			//
-	//																				//
-	//////////////////////////////////////////////////////////////////////////////////
+//Forum routes////////////////////////////////////////////////////////////////////
+//																				//
+//																				//
+//	 		Used for posting/requesting/searching the forum's database.			//
+//																				//
+//////////////////////////////////////////////////////////////////////////////////
 
 	//TEMP ROUTE. Called if we are login in from the forum's page.
 	router.get('/forum/login', function(req, res){
@@ -99,12 +102,12 @@ module.exports = function(app, passport){
 		
 	});
 
-	//Chat routes/////////////////////////////////////////////////////////////////////
-	//																				//
-	//																				//
-	//	 			Used for live chat between mentor and mentee					//
-	//																				//
-	//////////////////////////////////////////////////////////////////////////////////
+//Chat routes/////////////////////////////////////////////////////////////////////
+//																				//
+//																				//
+//	 			Used for live chat between mentor and mentee					//
+//																				//
+//////////////////////////////////////////////////////////////////////////////////
 
 	router.post('/chat/Post', function(req,res){
 		console.log('posting a new message on chat');
@@ -179,12 +182,12 @@ module.exports = function(app, passport){
     }*/
 
 
-	//Authentication routes///////////////////////////////////////////////////////////
-	//																				//
-	//																				//
-	//	 Used for login/signups using local/facebook/google and other services		//
-	//																				//
-	//////////////////////////////////////////////////////////////////////////////////
+//Authentication routes///////////////////////////////////////////////////////////
+//																				//
+//																				//
+//	 Used for login/signups using local/facebook/google and other services		//
+//																				//
+//////////////////////////////////////////////////////////////////////////////////
 	
 	//Local
 	router.post('/login', passport.authenticate('local-login', {
@@ -233,6 +236,42 @@ module.exports = function(app, passport){
 		req.logout();
 		res.redirect('/');
 	});
+
+
+//Timeline routes/////////////////////////////////////////////////////////////////
+//																				//
+//																				//
+//	 				Used on the profile's timeline section						//
+//																				//
+//////////////////////////////////////////////////////////////////////////////////
+
+	router.get('/timeline/retrieve', isLoggedIn, function(req, res){
+		console.log('retrieving timeline information...');
+		tl_event.find({'user': req.user.member.email}, function(err, timeline){
+			if(err)
+			{
+				return err;
+			}
+			if(!timeline)
+			{
+				return req.flash('loginMessage', 'Error matching data');
+			}
+			
+			console.log(timeline);
+			
+			res.send(timeline);
+		});
+	});
+
+
+//Other routes////////////////////////////////////////////////////////////////////
+//																				//
+//																				//
+//	 							Miscellaneous									//
+//																				//
+//////////////////////////////////////////////////////////////////////////////////
+
+
 	//Let's us use router for our routes.
 	app.use('/', router);
 
