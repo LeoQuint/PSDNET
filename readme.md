@@ -1,6 +1,55 @@
 # PSDnet Documentation.
 `Just started`
 
+#### Html Layout
+
+##### index.html
+	Contains everything. Entry point to the one page app.
+
+	###### navbar.html 
+	_This is held on index and is present in all pages._
+    	**<div ng-include="'views/navbar.html'" scope="" onload=""></div>**
+    				`Code in index.html adding the navbar`
+
+
+
+	###### ng-view
+
+	<div>
+	    <!--Main view location -->
+	    <div ng-view></div>
+	</div>
+	`Code in index.html adding our view.`
+
+	From ng-view we display:
+		1.About
+			*3Pillars.html
+			*about.html
+			*contact.html
+		2.Community
+			*community.html
+			*forum.html
+				`forum.html also uses aPost.html inside a directive to display each posts.`
+		3.Dashboard
+			*profile.html
+				`profile.html uses chat.html has a directive for displaying live chat.`
+		4.Education
+			*education.html
+			*news.html
+			*podcasts.html
+			*webinars.html
+		5.Featured
+			*featured.html
+		6.Mentorship
+			*training.html
+			*timeline.html
+				`currently not included. Added inside profile.html.`
+			*signup.html
+			*mentorships.html
+			*mentor.html
+			*evaluation.html
+
+
 #### Models
 
 ```
@@ -13,4 +62,7 @@
 	the post reference and searchable data. 
 -userProfile
 	Holds all user information of a user. User privileges are also stored in userProfile.
+-tl_event
+	Used to create the timeline on the profile page. Each event will represent a task,
+	upcoming important date, past meetings, conversation with mentor and other.
 ```
