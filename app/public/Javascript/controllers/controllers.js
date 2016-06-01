@@ -1,6 +1,7 @@
 //Contains all the controllers and services for the app.
 var psdnetAppControllers = angular.module('psdnetAppControllers', ['angular-carousel']);
 
+
 ///SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##///
 
 //Provides data on the previous location.
@@ -46,16 +47,12 @@ psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
 }] );
 
 psdnetAppControllers.controller('aboutController', function($scope, $http) {
-    $http({
-            "url": "/load/json",
-            "method": "GET",
-            "data": {
-                fileName: 'msg_3Pillars.json'
-                }
-        }).then(function successCallback(response){
+    
+    $http.get('/Resources/Data/msg_3Pillars.json')
+       .then(function(res){
+          $scope.messages = res.data;        
+        });
 
-        console.log("succes !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + response);
-    });
     $scope.message = 'this is the about controller.';
     $scope.template = 'aboutTemp';
 });

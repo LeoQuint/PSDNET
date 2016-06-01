@@ -11,6 +11,8 @@ var app = express();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 
+var request = require('request');//for url requests.
+
 module.exports = function(app, passport){
 
 
@@ -247,8 +249,26 @@ module.exports = function(app, passport){
 //////////////////////////////////////////////////////////////////////////////////
 
 	router.get('/load/json', function(req, res){
-		console.log(req.route);
-		console.log(req.body);
+		console.log("url requested : " + req.url);
+	var url = '/Javascript/controllers/test.json';
+
+	request({
+	    url: url,
+	    json: true
+		}, function (error, response, body) {
+			console.log('requesting...');
+			console.log(error);
+
+    if (!error && response.statusCode === 200) {
+        console.log(body) // Print the json response
+        console.log('working...');
+    }
+    console.log('sending...');
+    res.send(body);
+	});
+
+	
+		
 	});
 
 	//Let's us use router for our routes.
@@ -264,4 +284,5 @@ function isLoggedIn(req, res, next){
 	
 	res.send(false);
 }
+
 
