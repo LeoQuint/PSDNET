@@ -1,5 +1,5 @@
 # PSDnet Documentation.
-`Just started`
+
 
 #### Html Layout
 
@@ -8,17 +8,14 @@
 
 ###### navbar.html 
 _This is held on index and is present in all pages._
-	**<div ng-include="'views/navbar.html'" scope="" onload=""></div>**
-				`Code in index.html adding the navbar`
-
+	
 
 
 ###### ng-view
 
-`Code in index.html adding our view.`
 
 1. About
-  * 3Pillars.html
+  * [3Pillars.html](/app/public/views/about/3Pillars.html)
   * about.html
   * contact.html
 2. Community
