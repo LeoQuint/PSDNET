@@ -48,7 +48,7 @@ psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
 
 psdnetAppControllers.controller('aboutController', function($scope, $http) {
     
-    $http.get('/Resources/Data/msg_3Pillars.json')
+    $http.get('/Resources/Messages/msg_3Pillars.json')
        .then(function(res){
           $scope.messages = res.data;        
         });
