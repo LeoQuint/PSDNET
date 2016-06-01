@@ -15,39 +15,34 @@ _This is held on index and is present in all pages._
 
 ###### ng-view
 
-<div>
-    <!--Main view location -->
-    <div ng-view></div>
-</div>
 `Code in index.html adding our view.`
 
-From ng-view we display:
-1.About
-  *3Pillars.html
-  *about.html
-  *contact.html
-2.Community
-  *community.html
-  *forum.html
-	`forum.html also uses aPost.html inside a directive to display each posts.`
-3.Dashboard
-  *profile.html
-			`profile.html uses chat.html has a directive for displaying live chat.`
-4.Education
-  *education.html
-  *news.html
-  *podcasts.html
-  *webinars.html
-5.Featured
-  *featured.html
-6.Mentorship
-  *training.html
-  *timeline.html
-	`currently not included. Added inside profile.html.`
-  *signup.html
-  *mentorships.html
-  *mentor.html
-  *evaluation.html
+1. About
+  * 3Pillars.html
+  * about.html
+  * contact.html
+2. Community
+  * community.html
+  * forum.html
+   `forum.html also uses aPost.html inside a directive to display each posts.`
+3. Dashboard
+  * profile.html
+   `profile.html uses chat.html has a directive for displaying live chat.`
+4. Education
+  * education.html
+  * news.html
+  * podcasts.html
+  * webinars.html
+5. Featured
+  * featured.html
+6. Mentorship
+  * training.html
+  * timeline.html
+   `currently not included. Added inside profile.html.`
+  * signup.html
+  * mentorships.html
+  * mentor.html
+  * evaluation.html
 
 #### Modules Used
 
@@ -55,12 +50,11 @@ From ng-view we display:
 
 #### Resources
 
-```
-	Resources folder located in app/public.
+`Resources folder located in app/public.`
 
    Contains any resources that needs to be loaded on demand NOT from the database. Currently Messages folder is used to store json objects representing all communication for the current page displayed. When loaded it can be access inside html using {{ messages }}.
 
-```
+
 
 
 #### Models
