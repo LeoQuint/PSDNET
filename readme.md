@@ -15,31 +15,30 @@ _This is held on index and is present in all pages._
 
 
 1. About
-  * [3Pillars.html](app/public/views/About/3Pillars.html)
+  * [3Pillars.html](app/public/views/About/3pillars.html)
   * [about.html](app/public/views/About/about.html)
   * [contact.html](app/public/views/About/contact.html)
 2. Community
-  * community.html
-  * forum.html
-   `forum.html also uses aPost.html inside a directive to display each posts.`
+  * [community.html](app/public/views/Community/community.html)
+  * [forum.html](app/public/views/Community/forum.html)
+   `forum.html also uses [aPost.html](app/public/views/Community/aPost.html) inside a directive to display each posts.`
 3. Dashboard
-  * profile.html
-   `profile.html uses chat.html has a directive for displaying live chat.`
+  * [profile.html](app/public/views/Dashboard/profile.html)
+   `profile.html uses [chat.html](app/public/views/Mentorship/chat.html) has a directive for displaying live chat.`
 4. Education
-  * education.html
-  * news.html
-  * podcasts.html
-  * webinars.html
+  * [education.html](app/public/views/Education/education.html)
+  * [news.html](app/public/views/Education/news.html)
+  * [podcasts.html](app/public/views/Education/podcasts.html)
+  * [webinars.html](app/public/views/Education/webinars.html)
 5. Featured
-  * featured.html
+  * [featured.html](app/public/views/Featured/featured.html)
 6. Mentorship
-  * training.html
-  * timeline.html
+  * [mentorships.html](app/public/views/Mentorship/mentorships.html)
    `currently not included. Added inside profile.html.`
-  * signup.html
-  * mentorships.html
-  * mentor.html
-  * evaluation.html
+  * [signup.html](app/public/views/Mentorship/signup.html)
+  * [training.html](app/public/views/Mentorship/training.html)
+  * [mentor.html](app/public/views/Mentorship/mentor.html)
+  * [evaluation.html](app/public/views/Mentorship/evaluation.html)
 
 #### Modules Used
 
