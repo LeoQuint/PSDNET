@@ -15,7 +15,7 @@ _This is held on index and is present in all pages._
 
 
 1. About
-  * [3Pillars.html](/app/public/views/about/3Pillars.html)
+  * [3Pillars.html](app/public/views/about/3Pillars.html)
   * about.html
   * contact.html
 2. Community
