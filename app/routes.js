@@ -246,6 +246,10 @@ module.exports = function(app, passport){
 //																				//
 //////////////////////////////////////////////////////////////////////////////////
 
+	router.get('/load/json', function(req, res){
+		console.log(req.route);
+		console.log(req.body);
+	});
 
 	//Let's us use router for our routes.
 	app.use('/', router);

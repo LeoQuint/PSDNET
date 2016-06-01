@@ -1,0 +1,41 @@
+{	
+	"main":	{
+			"title":"This is the main title",
+			"content":"this is the main content"
+	},
+	"altMain":{
+		"title":"this is the altmain content",
+		"content":"this is the alt main content"
+	},
+    "daily":[
+    	"first daily message", 
+    	"second daily message", 
+    	"third daily message"
+    ],
+    "announcements": [
+    	"first announcement", 
+    	"second announcement", 
+    	"third announcement"
+    ],
+    "info" : [
+    	"first info bubble", 
+    	"second info bubble", 
+    	"third info bubble"
+    ],
+    "learning": [
+    	"first learning bubble", 
+    	"second learning bubble", 
+    	"third learning bubble"
+    ],
+    "contact": [
+    	{
+    		"name": "First person's name",
+    		"title": "First person's title",
+    		"email": "First person's email",
+    		"phone": "first person's phone",
+    		"office": "first person's office",
+    		"alt": "alternate for extra data"
+    	}
+    ],
+    "log" : "for internal use only"
+}

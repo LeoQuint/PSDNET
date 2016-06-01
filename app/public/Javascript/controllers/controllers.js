@@ -45,7 +45,17 @@ psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
 
 }] );
 
-psdnetAppControllers.controller('aboutController', function($scope) {
+psdnetAppControllers.controller('aboutController', function($scope, $http) {
+    $http({
+            "url": "/load/json",
+            "method": "GET",
+            "data": {
+                fileName: 'msg_3Pillars.json'
+                }
+        }).then(function successCallback(response){
+
+        console.log("succes !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + response);
+    });
     $scope.message = 'this is the about controller.';
     $scope.template = 'aboutTemp';
 });
@@ -56,7 +66,7 @@ psdnetAppControllers.controller('contactController', function($scope) {
 });
 
 psdnetAppControllers.controller('loginController', function($scope, previousLoc) {
-    console.log(previousLoc.Get());
+    
     $scope.message = 'this is the login controller.';
 });
 

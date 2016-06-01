@@ -31,16 +31,16 @@
 	
 <!-- Timeline -->
 		<timeline>
-			<timeline-event ng-repeat="event in timelineEvents" side="{{event.sideDisplayed}}">
-			  <timeline-badge class="{{event.iconStyle}}"> 
-			    <i class="{{event.icon}}"></i>
-			  </timeline-badge>
-			  <timeline-panel class="{{event.panelStyle}}">
-			    <timeline-heading>
-			      <h4>{{event.heading}}</h4>
-			    </timeline-heading>
+			<timeline-event ng-repeat="event in timelineEvents | orderBy: 'event.date' : true" side="{{event.sideDisplayed}}">
+			  	<timeline-badge class="{{event.iconStyle}}"> 
+		    		<i class="{{event.icon}}"></i>
+			  	</timeline-badge>
+			  	<timeline-panel class="{{event.panelStyle}}">
+				    <timeline-heading>
+				    	<h4>{{event.heading}}</h4>
+				    </timeline-heading>
 			    <p>{{event.content}}</p>
-			    <p>{{event.date | date : 'short'}}</p>
+			    <p>{{event.date | date : 'fullDate'}}</p>
 			  </timeline-panel>
 			</timeline-event>
 		</timeline>

@@ -10,7 +10,7 @@ var tl_event = mongoose.Schema({
 	date: Date, 			//Date to display at in the timeline.
 	createdOn: Date, 		//Date the event was created.	 
 	sideDisplayed: String,	//What side of the timeline this event should be displayed.
-
+	status: String,			//The event status (upcoming, due, completed, etc...)
 
 	icon: String,
 	iconStyle : String,
@@ -52,6 +52,7 @@ profileSchema.methods.CreateTimeline = function(){
 	welcomeEvent.icon = 'glyphicon glyphicon-star';
 	welcomeEvent.iconStyle = 'info';
 	welcomeEvent.panelStyle = 'info';
+	welcomeEvent.status = 'completed';
 
 	var firstTempEvent = {};
 	firstTempEvent.type = 'tutorial';
@@ -64,6 +65,7 @@ profileSchema.methods.CreateTimeline = function(){
 	firstTempEvent.icon = 'glyphicon glyphicon-apple';
 	firstTempEvent.iconStyle = 'info';
 	firstTempEvent.panelStyle = 'info';
+	firstTempEvent.status = 'next';
 
 
 	var secondTempEvent = {};
@@ -77,6 +79,7 @@ profileSchema.methods.CreateTimeline = function(){
 	secondTempEvent.icon = 'glyphicon glyphicon-pencil';
 	secondTempEvent.iconStyle = 'info';
 	secondTempEvent.panelStyle = 'info';
+	secondTempEvent.status = 'upcoming';
 
 	var thirdTempEvent = {};
 	thirdTempEvent.type = 'training';
@@ -89,6 +92,7 @@ profileSchema.methods.CreateTimeline = function(){
 	thirdTempEvent.icon = 'glyphicon glyphicon-pencil';
 	thirdTempEvent.iconStyle = 'info';
 	thirdTempEvent.panelStyle = 'info';
+	thirdTempEvent.status = 'upcoming';
 
 	this.member.timeline.push(welcomeEvent);
 	this.member.timeline.push(firstTempEvent);

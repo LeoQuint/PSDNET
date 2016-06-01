@@ -63,6 +63,7 @@ From ng-view we display:
 -userProfile
 	Holds all user information of a user. User privileges are also stored in userProfile.
 -tl_event
-	Used to create the timeline on the profile page. Each event will represent a task,
-	upcoming important date, past meetings, conversation with mentor and other.
+	Used to create the timeline on the profile page. This is *part* of userProfile document
+	as an array. Each event will represent a task, upcoming important date, past meetings, 
+	conversation with mentor and other.
 ```

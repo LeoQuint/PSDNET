@@ -2,14 +2,31 @@ var mongoose = require('mongoose');
 
 var cm_Messages = mongoose.Schema({
 	{
-		main: String,
-		altMain: String,
+		main: {
+			title: String, 
+			content: String
+		},
+		altMain: {
+			title: String, 
+			content: String
+		},
+
+
 
 		daily: String[],
 		announcements: String[],
 
 		info: String[],
 		learning: String[],
+
+		contact: {
+			name: String, 
+			title: String, 
+			email: String, 
+			phone: String, 
+			office: String, 
+			alt: String
+		},
 
 		log: String
 	}
