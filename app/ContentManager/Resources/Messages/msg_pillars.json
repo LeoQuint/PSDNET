@@ -1,6 +1,6 @@
 {	
 	"main":	{
-			"title":"This is the main title",
+			"title":"Welcome to our 3 Pillars",
 			"content":"this is the main content"
 	},
 	"altMain":{
@@ -8,7 +8,7 @@
 		"content":"this is the alt main content"
 	},
     "daily":[
-    	"first daily message", 
+    	"Welcome to the first daily message", 
     	"second daily message", 
     	"third daily message"
     ],
@@ -30,7 +30,7 @@
     "contact": [
     	{
     		"name": "Leonard",
-    		"title": "Coder",
+    		"title": "Programmer",
     		"email": "leo@email.com",
     		"phone": "999-666-8888",
     		"office": "first computer on the left.",

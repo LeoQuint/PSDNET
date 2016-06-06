@@ -57,14 +57,23 @@ psdnetAppControllers.controller('aboutController', function($scope, $http) {
 psdnetAppControllers.controller('3pillarsController', function($scope, $http){
      $http.get('/contentManager/retrieveMessages/3pillars')
        .then(function(res){
-          $scope.messages = res.data;        
+          $scope.messages = res.data[0].pages.pillars;        
         });
 });
 
-psdnetAppControllers.controller('contactController', function($scope, $http) {
-    //testing location for content manager.
-    $http.post('/contentManager/UpdateMessages');
-    $scope.message = 'this is the contact controller.';
+psdnetAppControllers.controller('contentController', function($scope, $http) {
+
+    $scope.updateMessageResult = '';
+
+    $scope.UpdateMessages = function()
+    {
+        console.log('Updating messages...');
+        $http.post('/contentManager/UpdateMessages').then(function successCallback(response){
+            $scope.updateMessageResult = response.data;   
+        }, function errorCallback(response){
+            $scope.updateMessageResult = response.data;
+        });;
+    };
    
 });
 

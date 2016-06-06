@@ -101,6 +101,13 @@ psdnetApp.config(function($routeProvider) {
             templateUrl : 'views/Dashboard/profile.html',
             controller  : 'profileController'
         })
+
+        //route for profile
+        .when('/contentManager', {
+            templateUrl : 'views/ContentManager/contentManager.html',
+            controller  : 'contentController'
+        })
+
        
         .otherwise({
             redirectTo: '/'
