@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 //Models
 var userProfile = require('../app/models/userProfile');
-var tl_event = require('../app/models/Timeline/tl_event');
+var contentManagerModel = require('../app/models/contentManagerModel');
 
 var configDB = require('../config/database.js');
 var discuss = require('mongodb-discuss')({mongoUrl: 'mongodb://localhost'});
@@ -12,6 +12,7 @@ var http = require("http").Server(app);
 var io = require("socket.io")(http);
 
 var request = require('request');//for url requests.
+var fs = require('fs');
 
 module.exports = function(app, passport){
 
@@ -239,6 +240,217 @@ module.exports = function(app, passport){
 		res.redirect('/');
 	});
 
+//Content Manager routes//////////////////////////////////////////////////////////
+//																				//
+//																				//
+//	 	Manages routes to post, update or change the site from admin login.		//
+//																				//
+//////////////////////////////////////////////////////////////////////////////////
+
+	router.post('/contentManager/UpdateMessages', function(req, res){
+		
+		contentManagerModel.count( function(err, count){
+			if(err)
+			{
+				return err;
+			}
+
+			if(count === 0)
+			{
+				//First time creation.
+				console.log('creating first version of contentManagerModels.');
+
+				var firstCMModel = new contentManagerModel();
+
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_home.json', function (err, json_home) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.home = json_home;
+
+				});
+
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_login.json', function (err, msg_login) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.login = msg_login;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_pillars.json', function (err, json_pillars) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.pillars = json_pillars;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_about.json', function (err, json_about) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.about = json_about;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_contact.json', function (err, json_contact) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.contact = json_contact;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_community.json', function (err, json_community) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.community = json_community;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_forum.json', function (err, json_forum) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.forum = json_forum;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_profile.json', function (err, json_profile) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.profile = json_profile;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_education.json', function (err, json_education) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.education = json_education;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_news.json', function (err, json_news) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.news = json_news;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_podcasts.json', function (err, json_podcasts) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.podcasts = json_podcasts;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_webinars.json', function (err, json_webinars) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.webinars = json_webinars;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_featured.json', function (err, json_featured) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.featured = json_featured;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_chat.json', function (err, json_chat) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.chat = json_chat;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_evaluation.json', function (err, json_evaluation) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.evaluation = json_evaluation;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentor.json', function (err, json_mentor) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.mentor = json_mentor;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentorships.json', function (err, json_mentorships) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.mentorships = json_mentorships;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_signup.json', function (err, json_signup) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.signup = json_signup;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_timeline.json', function (err, json_timeline) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.timeline = json_timeline;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_training.json', function (err, json_training) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+  				firstCMModel.pages.training = json_training;
+
+				console.log(firstCMModel.pages.training);
+				console.log(firstCMModel.pages.home);
+				});
+
+				//console.log(firstCMModel);
+
+				firstCMModel.save(function(err){
+								if(err)	
+								{
+									throw err;
+								}
+								else
+								{
+									return res(null, uploadedData);
+								}
+							});
+
+			}
+			else
+			{
+				console.log('updating the model.');
+				contentManagerModel.find(function(err, res){
+					console.log(res.pages);
+
+				});
+			}
+		});
+	});
+
 
 
 //Other routes////////////////////////////////////////////////////////////////////
@@ -247,7 +459,10 @@ module.exports = function(app, passport){
 //	 							Miscellaneous									//
 //																				//
 //////////////////////////////////////////////////////////////////////////////////
-
+	
+	//loads the json file for messages.
+	//will replace with one function for content management that uploads/update all 
+	//json data in the database from which we pull info.
 	router.get('/load/json', function(req, res){
 		console.log("url requested : " + req.url);
 	var url = '/Javascript/controllers/test.json';
@@ -259,18 +474,20 @@ module.exports = function(app, passport){
 			console.log('requesting...');
 			console.log(error);
 
-    if (!error && response.statusCode === 200) {
-        console.log(body) // Print the json response
-        console.log('working...');
-    }
-    console.log('sending...');
-    res.send(body);
-	});
+	    if (!error && response.statusCode === 200) {
+	        console.log(body) // Print the json response
+	        console.log('working...');
+	    }
+	    console.log('sending...');
+	    res.send(body);
+		});
 
 	
 		
 	});
 
+
+	///Do not remove.
 	//Let's us use router for our routes.
 	app.use('/', router);
 
@@ -283,6 +500,24 @@ function isLoggedIn(req, res, next){
 	}
 	
 	res.send(false);
+}
+
+function readJSONFile(filename, callback) {
+  fs.readFile(filename, function (err, data) {
+    if(err) 
+    {
+      callback(err);
+      return;
+    }
+    try 
+    {
+      callback(null, JSON.parse(data));
+    } 
+    catch(exception) 
+    {
+      callback(exception);
+    }
+  });
 }
 
 

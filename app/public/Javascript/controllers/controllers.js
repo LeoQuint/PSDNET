@@ -57,7 +57,9 @@ psdnetAppControllers.controller('aboutController', function($scope, $http) {
     $scope.template = 'aboutTemp';
 });
 
-psdnetAppControllers.controller('contactController', function($scope) {
+psdnetAppControllers.controller('contactController', function($scope, $http) {
+    //testing location for content manager.
+    $http.post('/contentManager/UpdateMessages');
     $scope.message = 'this is the contact controller.';
    
 });
