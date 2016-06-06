@@ -247,6 +247,19 @@ module.exports = function(app, passport){
 //																				//
 //////////////////////////////////////////////////////////////////////////////////
 
+	router.get('/contentManager/retrieveMessages/about', function(req, res){
+		contentManagerModel.find(function(err, messages){
+			res.send(messages[0].pages.about);
+		});
+	});
+
+	router.get('/contentManager/retrieveMessages/3pillars', function(req, res){
+		contentManagerModel.find(function(err, messages){
+			res.send(messages[0].pages.pillars);
+		});
+	});
+
+
 	router.post('/contentManager/UpdateMessages', function(req, res){
 		
 		contentManagerModel.count( function(err, count){
@@ -413,7 +426,8 @@ module.exports = function(app, passport){
 					throw err; 
 				}
   				firstCMModel.pages.timeline = json_timeline;
-
+  				console.log('TEST#3');
+				console.log(firstCMModel.pages);
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_training.json', function (err, json_training) {
 				if(err) 
@@ -421,13 +435,9 @@ module.exports = function(app, passport){
 					throw err; 
 				}
   				firstCMModel.pages.training = json_training;
-
-				console.log(firstCMModel.pages.training);
-				console.log(firstCMModel.pages.home);
-				});
-
-				//console.log(firstCMModel);
-
+  				console.log('TEST#1');
+				console.log(firstCMModel.pages);
+			
 				firstCMModel.save(function(err){
 								if(err)	
 								{
@@ -435,10 +445,16 @@ module.exports = function(app, passport){
 								}
 								else
 								{
-									return res(null, uploadedData);
+									return (null, firstCMModel);
 								}
-							});
+				});
 
+
+
+				});
+				
+
+				
 			}
 			else
 			{

@@ -48,13 +48,17 @@ psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
 
 psdnetAppControllers.controller('aboutController', function($scope, $http) {
     
-    $http.get('/Resources/Messages/msg_3Pillars.json')
+    $http.get('/contentManager/retrieveMessages/about')
        .then(function(res){
           $scope.messages = res.data;        
         });
+});
 
-    $scope.message = 'this is the about controller.';
-    $scope.template = 'aboutTemp';
+psdnetAppControllers.controller('3pillarsController', function($scope, $http){
+     $http.get('/contentManager/retrieveMessages/3pillars')
+       .then(function(res){
+          $scope.messages = res.data;        
+        });
 });
 
 psdnetAppControllers.controller('contactController', function($scope, $http) {
@@ -63,6 +67,8 @@ psdnetAppControllers.controller('contactController', function($scope, $http) {
     $scope.message = 'this is the contact controller.';
    
 });
+
+
 
 psdnetAppControllers.controller('loginController', function($scope, previousLoc) {
     
@@ -220,17 +226,7 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
     });
 
 
-    $scope.events = [{
-        badgeClass: 'info',
-        badgeIconClass: 'glyphicon-check',
-        title: 'First heading',
-        content: 'Some awesome content.'
-    }, {
-        badgeClass: 'warning',
-        badgeIconClass: 'glyphicon-credit-card',
-        title: 'Second heading',
-        content: 'More awesome content.'
-    }];
+
 
 
     

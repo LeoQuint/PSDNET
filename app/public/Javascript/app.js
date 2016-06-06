@@ -26,7 +26,7 @@ psdnetApp.config(function($routeProvider) {
         })
             .when('/a3Pillars', {
             templateUrl : 'views/About/3pillars.html',
-            controller  : 'aboutController'
+            controller  : '3pillarsController'
             })
             .when('/aContact', {
             templateUrl : 'views/About/contact.html',
