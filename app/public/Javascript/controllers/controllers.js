@@ -64,9 +64,13 @@ psdnetAppControllers.controller('3pillarsController', function($scope, $http){
 psdnetAppControllers.controller('contentController', function($scope, $http) {
 
     $scope.updateMessageResult = '';
+    $scope.hasSelectedAPage = false;
+    $scope.CurrentlyEditing = null;
+
+    $scope.messagePile = {};
 
     $scope.pages = [{"name": 'about'},{"name": 'chat'},{"name":  'community'}, {"name": 'contact'},
-                    {"name": 'education'}, {"name": 'evaluation'}, {"name": 'featured'},
+                    {"name": 'education'}, {"name": 'evaluation'}, {"name": 'featured'}, {"name": 'home'},
                     {"name": 'mentorships'}, {"name": 'news'}, {"name": 'pillars'}, {"name": 'podcasts'},
                     {"name": 'profile'}, {"name": 'signup'}, {"name": 'timeline'}, {"name": 'training'},
                     {"name": 'webinars'}];
@@ -75,7 +79,8 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
     //Retrieve the messages info to populate the forms.
     $http.get('/contentManager/retrieveMessages')
        .then(function(res){
-          $scope.messagePile = res.data[0].pages;  
+        //messagePile contains all the messages from all the pages. 
+        $scope.messagePile = res.data[0].pages;  
              
     });
 
@@ -88,13 +93,28 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
         });;
     };
 
-    $scope.hasSelectedAPage = false;
-    $scope.SelectPage = function(selected){
 
-        $scope.messages = $scope.messagePile[selected];
+    $scope.SelectPage = function(selected){
+        console.log($scope.messagePile);
+
+        $scope.CurrentlyEditing = selected;
+       
         if(selected != ''){
             $scope.hasSelectedAPage = true;
         }
+        
+    };
+
+   
+
+    $scope.SaveChanges = function(){
+
+        console.log($scope.messagePile);
+        $http.post('/contentManager/UpdateMessages', $scope.messagePile).then(function successCallback(response){
+            $scope.updateMessageResult = response.data;   
+        }, function errorCallback(response){
+            $scope.updateMessageResult = response.data;
+        });;
         
     };
 

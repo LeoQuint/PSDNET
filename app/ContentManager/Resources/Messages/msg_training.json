@@ -35,7 +35,39 @@
     		"phone": "999-666-8888",
     		"office": "first computer on the left.",
     		"alt": ""
-    	}
+    	},
+        {
+            "name": "Julie",
+            "title": "Coder",
+            "email": "leo@email.com",
+            "phone": "999-666-8888",
+            "office": "first computer on the left.",
+            "alt": ""
+        },
+        {
+            "name": "Bob",
+            "title": "Coder",
+            "email": "leo@email.com",
+            "phone": "999-666-8888",
+            "office": "first computer on the left.",
+            "alt": ""
+        },
+        {
+            "name": "Dan",
+            "title": "Coder",
+            "email": "leo@email.com",
+            "phone": "999-666-8888",
+            "office": "first computer on the left.",
+            "alt": ""
+        },
+        {
+            "name": "Math",
+            "title": "Coder",
+            "email": "leo@email.com",
+            "phone": "999-666-8888",
+            "office": "first computer on the left.",
+            "alt": ""
+        }
     ],
     "log" : "for internal use only"
 }

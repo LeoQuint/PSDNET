@@ -288,7 +288,7 @@ module.exports = function(app, passport){
 	//Creates a new contentManager model on the database if none exists.
 	//Need to also update the data if one is found.
 	router.post('/contentManager/UpdateMessages', function(req, res){
-		
+
 		contentManagerModel.count( function(err, count){
 			if(err)
 			{
@@ -299,187 +299,197 @@ module.exports = function(app, passport){
 
 			var firstCMModel = new contentManagerModel();
 
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_home.json', function (err, json_home) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.home = json_home;
-
-			});
-
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_login.json', function (err, msg_login) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.login = msg_login;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_pillars.json', function (err, json_pillars) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.pillars = json_pillars;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_about.json', function (err, json_about) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.about = json_about;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_contact.json', function (err, json_contact) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.contact = json_contact;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_community.json', function (err, json_community) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.community = json_community;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_forum.json', function (err, json_forum) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.forum = json_forum;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_profile.json', function (err, json_profile) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.profile = json_profile;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_education.json', function (err, json_education) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.education = json_education;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_news.json', function (err, json_news) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.news = json_news;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_podcasts.json', function (err, json_podcasts) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.podcasts = json_podcasts;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_webinars.json', function (err, json_webinars) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.webinars = json_webinars;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_featured.json', function (err, json_featured) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.featured = json_featured;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_chat.json', function (err, json_chat) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.chat = json_chat;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_evaluation.json', function (err, json_evaluation) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.evaluation = json_evaluation;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentor.json', function (err, json_mentor) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.mentor = json_mentor;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentorships.json', function (err, json_mentorships) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.mentorships = json_mentorships;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_signup.json', function (err, json_signup) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.signup = json_signup;
-
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_timeline.json', function (err, json_timeline) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.timeline = json_timeline;
 			
-			});
-			readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_training.json', function (err, json_training) {
-			if(err) 
-			{ 
-				throw err; 
-			}
-				firstCMModel.pages.training = json_training;
-	
-			//this is INSIDE the last readJSON function. Need to figure a better way to do this as async issues are very likely.
 			if(count === 0)
 			{
-				firstCMModel.save(function(err){
-							if(err)	
-							{
-								throw err;
-							}
-							else
-							{
-								res.send("First upload of messages documents.");
-								return (null, firstCMModel);
-							}
+				console.log('Creating first entry');
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_home.json', function (err, json_home) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.home = json_home;
+
+				});
+
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_login.json', function (err, msg_login) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.login = msg_login;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_pillars.json', function (err, json_pillars) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.pillars = json_pillars;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_about.json', function (err, json_about) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.about = json_about;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_contact.json', function (err, json_contact) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.contact = json_contact;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_community.json', function (err, json_community) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.community = json_community;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_forum.json', function (err, json_forum) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.forum = json_forum;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_profile.json', function (err, json_profile) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.profile = json_profile;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_education.json', function (err, json_education) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.education = json_education;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_news.json', function (err, json_news) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.news = json_news;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_podcasts.json', function (err, json_podcasts) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.podcasts = json_podcasts;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_webinars.json', function (err, json_webinars) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.webinars = json_webinars;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_featured.json', function (err, json_featured) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.featured = json_featured;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_chat.json', function (err, json_chat) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.chat = json_chat;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_evaluation.json', function (err, json_evaluation) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.evaluation = json_evaluation;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentor.json', function (err, json_mentor) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.mentor = json_mentor;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentorships.json', function (err, json_mentorships) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.mentorships = json_mentorships;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_signup.json', function (err, json_signup) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.signup = json_signup;
+
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_timeline.json', function (err, json_timeline) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.timeline = json_timeline;
+				
+				});
+				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_training.json', function (err, json_training) {
+				if(err) 
+				{ 
+					throw err; 
+				}
+					firstCMModel.pages.training = json_training;
+
+					//this is INSIDE the last readJSON function. Need to figure a better way to do this as async issues are very likely.
+					firstCMModel.save(function(err){
+								if(err)	
+								{
+									throw err;
+								}
+								else
+								{
+									res.send("First upload of messages documents.");
+									return (null, firstCMModel);
+								}
+					});
+
+
 				});
 			}
 			else if(count === 1)
 			{
+				console.log('Updating entry');
 				//make our model a json object and delete the _id field so we can update.
 				var updatingData = firstCMModel.toObject();
 				delete updatingData._id;
+				console.log(req.body);
+				console.log('Saved Data:---------------------------');
 				
+				updatingData.pages = req.body;
+				console.log(updatingData);
 				contentManagerModel.update({}, updatingData, function(err, numberAffected, rawResponse) {
 				   //handle it
 				   if(err)
@@ -495,13 +505,10 @@ module.exports = function(app, passport){
 			}
 			else
 			{
+				console.log('ERROR');
 				res.send("ERROR UPDATING contentManager!!!");	
 			}
 			
-
-
-
-			});
 			
 		});
 	});
