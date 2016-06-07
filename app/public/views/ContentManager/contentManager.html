@@ -2,10 +2,110 @@
 <div class="jumbotron text-center">
     
 	<h1>Content Manager</h1>
-	<h4>Change messages</h4>
+	
+
+
+	<h4 ng-click="showMessages = ! showMessages">Change messages</h4>
+	<div ng-show="showMessages">
+		<label>Select Page</label>
+		<select class="form-control"
+				ng-change="SelectPage(pageSelected.name)"
+				ng-options="option.name for option in pages" 
+				ng-model="pageSelected" >
+			
+		</select>
+		<div ng-show="hasSelectedAPage">
+
+			<form name="msgPage" class="form-horizontal" role="form">
+
+					<label>Main</label>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Title</label>
+						<div class="col-sm-10">
+	      					<input type="text" class="form-control" name="mainTitle" value="{{ messages.main.title}}">
+	    				</div>
+	    			</div>
+
+	    			<div class="form-group">
+						<label class="control-label col-sm-2">Content</label>
+						<div class="col-sm-10">
+	      					<input type="text" class="form-control" name="mainContent" value="{{ messages.main.content}}">
+	    				</div>
+	    			</div>	
+
+	    			<label>Alternate Main</label>
+    				<div class="form-group">
+						<label class="control-label col-sm-2">Title</label>
+						<div class="col-sm-10">
+	      					<input type="text" class="form-control" name="mainTitle" value="{{ messages.altMain.title}}">
+	    				</div>
+	    			</div>
+
+	    			<div class="form-group">
+						<label class="control-label col-sm-2">Content</label>
+						<div class="col-sm-10">
+	      					<input type="text" class="form-control" name="mainContent" value="{{ messages.altMain.content}}">
+	    				</div>
+	    			</div>	
+
+	    			<label>Daily Messages</label>
+	    			<div>
+	    				<input type="text" class="form-control" name="mainContent" value="{{ messages.altMain.content}}">
+	    			</div>
+
+
+			</form>
+
+
+		</div>
+	</div>
+
 	<h4>Upload content</h4>
 	<h4>Change settings</h4>
 	<button ng-click="UpdateMessages()">Upload JSON files to DB</button>
 	<h4>{{ updateMessageResult }}</h4>
 	      
 </div>
+
+
+<!-- {	
+	"main":	{
+			"title":"This is the main title",
+			"content":"this is the main content"
+	},
+	"altMain":{
+		"title":"this is the altmain content",
+		"content":"this is the alt main content"
+	},
+    "daily":[
+    	"first daily message", 
+    	"second daily message", 
+    	"third daily message"
+    ],
+    "announcements": [
+    	"first announcement", 
+    	"second announcement", 
+    	"third announcement"
+    ],
+    "info" : [
+    	"first info bubble", 
+    	"second info bubble", 
+    	"third info bubble"
+    ],
+    "learning": [
+    	"first learning bubble", 
+    	"second learning bubble", 
+    	"third learning bubble"
+    ],
+    "contact": [
+    	{
+    		"name": "Leonard",
+    		"title": "Coder",
+    		"email": "leo@email.com",
+    		"phone": "999-666-8888",
+    		"office": "first computer on the left.",
+    		"alt": ""
+    	}
+    ],
+    "log" : "for internal use only"
+} -->

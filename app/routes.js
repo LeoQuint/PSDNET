@@ -248,6 +248,18 @@ module.exports = function(app, passport){
 //////////////////////////////////////////////////////////////////////////////////
 	
 	//routes to retrieve messages from the contentManager model saved.
+	router.get('/contentManager/retrieveMessages', function(req, res){
+		var query = contentManagerModel.find({}).select({"_id": 0});
+
+		query.exec(function(err, messages){
+			if(err)
+			{
+				return next(err);
+			}
+			console.log(messages);
+			res.send(messages);
+		});
+	});
 	router.get('/contentManager/retrieveMessages/about', function(req, res){
 		var query = contentManagerModel.find({}).select({"pages.about": 1, "_id": 0});
 

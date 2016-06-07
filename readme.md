@@ -44,13 +44,13 @@ _This is held on index and is present in all pages._
 
 [angular-timeline](https://github.com/rpocklin/angular-timeline) for the timeline.
 
-#### Resources
+#### Content Manager
 
-`Resources folder located in app/public.`
+`Part of the admin dropdown menu available to authorized personel.`
 
-   Contains any resources that needs to be loaded on demand NOT from the database. Currently Messages folder is used to store json objects representing all communication for the current page displayed. When loaded it can be access inside html using {{ messages }}.
+##### Messages
 
-
+`The messages objects hold all the text/nformation to be displayed and changed regularly.`
 
 
 #### Models
@@ -69,4 +69,7 @@ _This is held on index and is present in all pages._
 	Used to create the timeline on the profile page. This is *part* of userProfile document
 	as an array. Each event will represent a task, upcoming important date, past meetings, 
 	conversation with mentor and other.
+-ContentMangerModel
+	Only one of this model stored in the DB. Contains an object for each pages we want to set
+	messages and text in the content manager. 
 ```

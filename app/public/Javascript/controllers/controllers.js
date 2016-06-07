@@ -65,8 +65,21 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
 
     $scope.updateMessageResult = '';
 
-    $scope.UpdateMessages = function()
-    {
+    $scope.pages = [{"name": 'about'},{"name": 'chat'},{"name":  'community'}, {"name": 'contact'},
+                    {"name": 'education'}, {"name": 'evaluation'}, {"name": 'featured'},
+                    {"name": 'mentorships'}, {"name": 'news'}, {"name": 'pillars'}, {"name": 'podcasts'},
+                    {"name": 'profile'}, {"name": 'signup'}, {"name": 'timeline'}, {"name": 'training'},
+                    {"name": 'webinars'}];
+
+
+    //Retrieve the messages info to populate the forms.
+    $http.get('/contentManager/retrieveMessages')
+       .then(function(res){
+          $scope.messagePile = res.data[0].pages;  
+             
+    });
+
+    $scope.UpdateMessages = function(){
         console.log('Updating messages...');
         $http.post('/contentManager/UpdateMessages').then(function successCallback(response){
             $scope.updateMessageResult = response.data;   
@@ -74,6 +87,18 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
             $scope.updateMessageResult = response.data;
         });;
     };
+
+    $scope.hasSelectedAPage = false;
+    $scope.SelectPage = function(selected){
+
+        $scope.messages = $scope.messagePile[selected];
+        if(selected != ''){
+            $scope.hasSelectedAPage = true;
+        }
+        
+    };
+
+
    
 });
 
