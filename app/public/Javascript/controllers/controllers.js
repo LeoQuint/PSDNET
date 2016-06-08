@@ -288,14 +288,10 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
 
 
     $scope.SelectPage = function(selected){
-        console.log($scope.messagePile);
-
         $scope.CurrentlyEditing = selected;
-       
         if(selected != ''){
             $scope.hasSelectedAPage = true;
         }
-        
     };
 
    

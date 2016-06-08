@@ -596,11 +596,7 @@ module.exports = function(app, passport){
 				//make our model a json object and delete the _id field so we can update.
 				var updatingData = firstCMModel.toObject();
 				delete updatingData._id;
-				console.log(req.body);
-				console.log('Saved Data:---------------------------');
-
 				updatingData.pages = req.body;
-				console.log(updatingData);
 				contentManagerModel.update({}, updatingData, function(err, numberAffected, rawResponse) {
 				   //handle it
 				   if(err)

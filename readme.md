@@ -22,9 +22,11 @@ _This is held on index and is present in all pages._
 2. Community
   * [community.html](app/public/views/Community/community.html)
   * [forum.html](app/public/views/Community/forum.html)
+
    `forum.html also uses [aPost.html](app/public/views/Community/aPost.html) inside a directive to display each posts.`
 3. Dashboard
   * [profile.html](app/public/views/Dashboard/profile.html)
+
    `profile.html uses [chat.html](app/public/views/Mentorship/chat.html) has a directive for displaying live chat.`
 4. Education
   * [education.html](app/public/views/Education/education.html)
@@ -35,6 +37,7 @@ _This is held on index and is present in all pages._
   * [featured.html](app/public/views/Featured/featured.html)
 6. Mentorship
   * [mentorships.html](app/public/views/Mentorship/mentorships.html)
+
    `currently not included. Added inside profile.html.`
   * [signup.html](app/public/views/Mentorship/signup.html)
   * [training.html](app/public/views/Mentorship/training.html)
@@ -45,7 +48,7 @@ _This is held on index and is present in all pages._
 
 `To make the website easy to edit, lots of data will be retrieved live from the DB.
 It is loaded with each view's controller and is accessed from the scope with the object
-{ messages }`
+_messages_`
 
 ##### The messages model:
 ```
@@ -80,7 +83,7 @@ It is loaded with each view's controller and is accessed from the scope with the
 }
 ```
 
-##### Example : 
+##### Usage example : 
 
         <p>{{ messages.main.content }}</p>
 
