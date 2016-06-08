@@ -48,7 +48,7 @@ _This is held on index and is present in all pages._
 
 `To make the website easy to edit, lots of data will be retrieved live from the DB.
 It is loaded with each view's controller and is accessed from the scope with the object
-_messages_`
+**messages**`
 
 ##### The messages model:
 ```
