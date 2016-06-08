@@ -42,7 +42,7 @@ psdnetApp.config(function($routeProvider) {
          //route to the mentorship page
         .when('/mentorships', {
             templateUrl : 'views/Mentorship/mentorships.html',
-            controller  : 'contactController'
+            controller  : 'mentorshipsController'
         })
             .when('/mSignup', {
             templateUrl : 'views/Mentorship/signup.html',
@@ -50,11 +50,11 @@ psdnetApp.config(function($routeProvider) {
             })
             .when('/mEvaluation', {
             templateUrl : 'views/Mentorship/evaluation.html',
-            controller  : 'contactController'
+            controller  : 'evaluationController'
             })
             .when('/mTraining', {
             templateUrl : 'views/Mentorship/training.html',
-            controller  : 'contactController'
+            controller  : 'trainingController'
             })
             .when('/mTimeline', {
             templateUrl : 'views/Mentorship/timeline.html',
@@ -64,25 +64,25 @@ psdnetApp.config(function($routeProvider) {
          //route to the Education page
         .when('/education', {
             templateUrl : 'views/Education/education.html',
-            controller  : 'contactController'
+            controller  : 'educationController'
         })
             .when('/eNews', {
                 templateUrl : 'views/Education/news.html',
-                controller  : 'contactController'
+                controller  : 'newsController'
             })
             .when('/ePodcast', {
                 templateUrl : 'views/Education/podcasts.html',
-                controller  : 'contactController'
+                controller  : 'podcastController'
             })
             .when('/eWebinar', {
                 templateUrl : 'views/Education/webinars.html',
-                controller  : 'contactController'
+                controller  : 'webinarController'
             })
 
         //route to the community page
         .when('/community', {
                 templateUrl : 'views/Community/community.html',
-                controller  : 'contactController'
+                controller  : 'communityController'
         })
             .when('/cForum', {
                 templateUrl : 'views/Community/forum.html',

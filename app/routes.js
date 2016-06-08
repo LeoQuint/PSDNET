@@ -250,53 +250,152 @@ module.exports = function(app, passport){
 	//routes to retrieve messages from the contentManager model saved.
 	router.get('/contentManager/retrieveMessages', function(req, res){
 		var query = contentManagerModel.find({}).select({"_id": 0});
-
-		query.exec(function(err, messages){
-			if(err)
-			{
-				return next(err);
-			}
-			console.log(messages);
-			res.send(messages);
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
 		});
 	});
 	router.get('/contentManager/retrieveMessages/about', function(req, res){
 		var query = contentManagerModel.find({}).select({"pages.about": 1, "_id": 0});
-
-		query.exec(function(err, about){
-			if(err)
-			{
-				return next(err);
-			}
-			console.log(about);
-			res.send(about);
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
 		});
 	});
-	router.get('/contentManager/retrieveMessages/3pillars', function(req, res){
-		var query = contentManagerModel.find({}).select({"pages.pillars": 1, "_id": 0});
-
-		query.exec(function(err, pillars){
-			if(err)
-			{
-				return next(err);
-			}
-			console.log(pillars);
-			res.send(pillars);
+	router.get('/contentManager/retrieveMessages/chat', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.chat": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/community', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.community": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/contact', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.contact": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/education', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.education": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/evaluation', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.evaluation": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
 		});
 	});
 	router.get('/contentManager/retrieveMessages/featured', function(req, res){
 		var query = contentManagerModel.find({}).select({"pages.featured": 1, "_id": 0});
-
-		query.exec(function(err, featured){
-			if(err)
-			{
-				return next(err);
-			}
-			console.log(featured);
-			res.send(featured);
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
 		});
 	});
-
+	router.get('/contentManager/retrieveMessages/forum', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.forum": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/home', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.home": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/login', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.login": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/mentor', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.mentor": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/mentorships', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.mentorships": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/news', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.news": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/3pillars', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.pillars": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/podcasts', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.podcasts": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/profile', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.profile": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/signup', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.signup": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/timeline', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.timeline": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/training', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.training": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	router.get('/contentManager/retrieveMessages/webinars', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.webinars": 1, "_id": 0});
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+			res.send(info);
+		});
+	});
+	
 	//Creates a new contentManager model on the database if none exists.
 	//Need to also update the data if one is found.
 	router.post('/contentManager/UpdateMessages', function(req, res){

@@ -1,9 +1,16 @@
 <!-- home.html -->
     <div class="jumbotron text-center">
 
-        <h1>Home Page</h1>
+        <h1>{{messages.main.title}}</h1>
 
-        <p>{{ message }}</p>
+
+        <p>{{ messages.main.content }}</p>
+
+        <h5>DAILY MESSAGES</h5>
+        <div ng-repeat="daily in messages.daily track by $index">
+            <h3>{{ daily }}</h3>
+        </div>
+
 
         <div>
   
@@ -19,3 +26,6 @@
         </div>
            
     </div>
+
+
+  

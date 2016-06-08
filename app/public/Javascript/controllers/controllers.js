@@ -21,7 +21,8 @@ psdnetAppControllers.service('previousLoc', function() {
 
 ///SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##SERVICES##///
 
-psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
+psdnetAppControllers.controller('homeController', function($scope, $http) {
+    GetMessages('/contentManager/retrieveMessages/home', "home", $http, $scope);
     //for testing. Images should come from the DB.
     var randomImages = [];
     var img1 = new Image();
@@ -44,82 +45,161 @@ psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
     $scope.Images = randomImages;
     $scope.message = 'this is the main controller';
 
-}] );
-
+});
 psdnetAppControllers.controller('aboutController', function($scope, $http) {
-    
     GetMessages('/contentManager/retrieveMessages/about', "about", $http, $scope);
 });
+psdnetAppControllers.controller('chatController', function($scope, $interval, $http){
+   GetMessages('/contentManager/retrieveMessages/chat', "chat", $http, $scope);
+    //Send a request to check for new messages at intervals. Currently set to 2 secs.
+    var UpdateChat = function () {
 
+      update = $interval(function() {
+       console.log('Updating...');
+
+       $http.get('/chat/Update').then(function(response){
+    
+           
+           if(response.data.status === 'new')
+           {
+                console.log('new message incoming!');
+                console.log(response.data.message);
+           }
+      
+        });
+
+      }, 2000);
+    };
+    //UpdateChat();
+});
+psdnetAppControllers.controller('communityController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/community', "community", $http, $scope);
+});
+psdnetAppControllers.controller('contactController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/contact', "contact", $http, $scope);
+});
 psdnetAppControllers.controller('3pillarsController', function($scope, $http){
-     
     GetMessages('/contentManager/retrieveMessages/3pillars', "pillars", $http, $scope);
 });
-
-psdnetAppControllers.controller('contentController', function($scope, $http) {
-
-    $scope.updateMessageResult = '';
-    $scope.hasSelectedAPage = false;
-    $scope.CurrentlyEditing = null;
-
-    $scope.messagePile = { messages : {}};
-
-    $scope.pages = [{"name": 'about'},{"name": 'chat'},{"name":  'community'}, {"name": 'contact'},
-                    {"name": 'education'}, {"name": 'evaluation'}, {"name": 'featured'}, {"name": 'home'},
-                    {"name": 'mentorships'}, {"name": 'news'}, {"name": 'pillars'}, {"name": 'podcasts'},
-                    {"name": 'profile'}, {"name": 'signup'}, {"name": 'timeline'}, {"name": 'training'},
-                    {"name": 'webinars'}];
-
-
-    //Retrieve the messages info to populate the forms.
-    GetMessages('/contentManager/retrieveMessages', "", $http, $scope);
-
-    $scope.UpdateMessages = function(){
-        console.log('Updating messages...');
-        $http.post('/contentManager/UpdateMessages').then(function successCallback(response){
-            $scope.updateMessageResult = response.data;   
-        }, function errorCallback(response){
-            $scope.updateMessageResult = response.data;
-        });;
-    };
-
-
-    $scope.SelectPage = function(selected){
-        console.log($scope.messagePile);
-
-        $scope.CurrentlyEditing = selected;
-       
-        if(selected != ''){
-            $scope.hasSelectedAPage = true;
-        }
-        
-    };
-
-   
-
-    $scope.SaveChanges = function(){
-
-        
-        $http.post('/contentManager/UpdateMessages', $scope.messagePile).then(function successCallback(response){
-            $scope.updateMessageResult = response.data;   
-        }, function errorCallback(response){
-            $scope.updateMessageResult = response.data;
-        });;
-        
-    };
-
-
-   
+psdnetAppControllers.controller('mentorshipsController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/mentorships', "mentorships", $http, $scope);
 });
-
-
-
+psdnetAppControllers.controller('evaluationController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/evaluation', "evaluation", $http, $scope);
+});
+psdnetAppControllers.controller('trainingController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/training', "training", $http, $scope);
+});
 psdnetAppControllers.controller('loginController', function($scope, $http, previousLoc) {
-    $scope.message = 'this is the login controller.';
+    GetMessages('/contentManager/retrieveMessages/login', "login", $http, $scope);
 });
+psdnetAppControllers.controller('educationController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/education', "education", $http, $scope);
+});
+psdnetAppControllers.controller('newsController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/news', "news", $http, $scope);
+});
+psdnetAppControllers.controller('podcastController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/podcasts', "podcasts", $http, $scope);
+});
+psdnetAppControllers.controller('webinarController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/webinars', "webinars", $http, $scope);
+});
+psdnetAppControllers.controller('featuredController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/featured', "featured", $http, $scope);
+});
+psdnetAppControllers.controller('signupController', function($scope, $http){
+        GetMessages('/contentManager/retrieveMessages/signup', "signup", $http, $scope);
+        $scope.ontarioColleges = [
+        'Algonquin College',
+        'Cambrian College',
+        'Canadore College' ,
+        'Centennial College' ,
+        'Collège Boréal' ,
+        'Conestoga College' ,
+        'Confederation College',
+        'Durham College' ,
+        'Fanshawe College',
+        'Fleming College' ,
+        'George Brown College',
+        'Georgian College' ,
+        'Humber College' ,
+        'La Cité collégiale' ,
+        'Lambton College',
+        'Loyalist College',
+        'Mohawk College',
+        'Niagara College' ,
+        'Northern College' ,
+        'St. Clair College' ,
+        'St. Lawrence College' ,
+        'Sault College',
+        'Seneca College', 
+        'Sheridan College' ];
+        $scope.ontarioUniversities = [
+        'Algoma University',
+        'Brock University',
+        'Carleton University',
+        'University of Guelph',
+        'Lakehead University',
+        'Laurentian University',
+        'McMaster University',
+        'Nipissing University',
+        'OCAD University',
+        'University of Ottawa',
+        'Queen’s University',
+        'Royal Military College of Canada',
+        'Ryerson University',
+        'University of Toronto',
+        'Trent University',
+        'University of Ontario Institute of Technology',
+        'University of Waterloo',   
+        'Western University',  
+        'Wilfrid Laurier University',
+        'University of Windsor',
+        'York University'
+        ];
 
+     
+    
+});
+psdnetAppControllers.controller('profileController',  function($scope, $http, previousLoc, $location) {
+    GetMessages('/contentManager/retrieveMessages/profile', "profile", $http, $scope);
+    var isLogged = false;
+    $scope.showInfo = isLogged;
+    $scope.isAdmin = false;
+
+    $http.get('/getProfil').then(function(response){
+            if(response.data == false)
+            {
+                isLogged = false;
+                $scope.showInfo = isLogged;
+            }
+            else
+            {
+                isLogged = true;
+                $scope.showInfo = isLogged;
+                if(previousLoc.Get() == 'loginForum')
+                {
+                    $location.path('/cForum');
+                }
+                else
+                {
+                    previousLoc.Set('');
+                    $scope.userProfile = response.data;
+                    $scope.timelineEvents = $scope.userProfile.member.timeline;
+                    if($scope.userProfile.member.memberStatus === 'admin')
+                    {
+                        $scope.$parent.isAdmin = true;
+                    }
+                }
+                
+            }
+
+    });
+
+});
 psdnetAppControllers.controller('forumController', function($scope, $http, previousLoc, $location) {
-
+    GetMessages('/contentManager/retrieveMessages/forum', "forum", $http, $scope);
    
     $scope.isLogged = false;
     $http.get('/forum/login').then(function successCallback(response){
@@ -181,128 +261,60 @@ psdnetAppControllers.controller('forumController', function($scope, $http, previ
 
 });
 
-psdnetAppControllers.controller('signupController', function($scope, $http){
-  
-        $scope.ontarioColleges = [
-        'Algonquin College',
-        'Cambrian College',
-        'Canadore College' ,
-        'Centennial College' ,
-        'Collège Boréal' ,
-        'Conestoga College' ,
-        'Confederation College',
-        'Durham College' ,
-        'Fanshawe College',
-        'Fleming College' ,
-        'George Brown College',
-        'Georgian College' ,
-        'Humber College' ,
-        'La Cité collégiale' ,
-        'Lambton College',
-        'Loyalist College',
-        'Mohawk College',
-        'Niagara College' ,
-        'Northern College' ,
-        'St. Clair College' ,
-        'St. Lawrence College' ,
-        'Sault College',
-        'Seneca College', 
-        'Sheridan College' ];
-        $scope.ontarioUniversities = [
-        'Algoma University',
-        'Brock University',
-        'Carleton University',
-        'University of Guelph',
-        'Lakehead University',
-        'Laurentian University',
-        'McMaster University',
-        'Nipissing University',
-        'OCAD University',
-        'University of Ottawa',
-        'Queen’s University',
-        'Royal Military College of Canada',
-        'Ryerson University',
-        'University of Toronto',
-        'Trent University',
-        'University of Ontario Institute of Technology',
-        'University of Waterloo',   
-        'Western University',  
-        'Wilfrid Laurier University',
-        'University of Windsor',
-        'York University'
-        ];
 
-     
-    
-});
 
-psdnetAppControllers.controller('profileController',  function($scope, $http, previousLoc, $location) {
-    
-    var isLogged = false;
-    $scope.showInfo = isLogged;
-    $scope.isAdmin = false;
+psdnetAppControllers.controller('contentController', function($scope, $http) {
+    GetMessages('/contentManager/retrieveMessages', "", $http, $scope);
+    $scope.updateMessageResult = '';
+    $scope.hasSelectedAPage = false;
+    $scope.CurrentlyEditing = null;
 
-    $http.get('/getProfil').then(function(response){
-            if(response.data == false)
-            {
-                isLogged = false;
-                $scope.showInfo = isLogged;
-            }
-            else
-            {
-                isLogged = true;
-                $scope.showInfo = isLogged;
-                if(previousLoc.Get() == 'loginForum')
-                {
-                    $location.path('/cForum');
-                }
-                else
-                {
-                    previousLoc.Set('');
-                    $scope.userProfile = response.data;
-                    $scope.timelineEvents = $scope.userProfile.member.timeline;
-                    if($scope.userProfile.member.memberStatus === 'admin')
-                    {
-                        $scope.$parent.isAdmin = true;
-                    }
-                }
-                
-            }
+    $scope.messagePile = { messages : {}};
 
-    });
+    $scope.pages = [{"name": 'about'},{"name": 'chat'},{"name":  'community'}, {"name": 'contact'},
+                    {"name": 'education'}, {"name": 'evaluation'}, {"name": 'featured'}, {"name": 'home'},
+                    {"name": 'mentorships'}, {"name": 'news'}, {"name": 'pillars'}, {"name": 'podcasts'},
+                    {"name": 'profile'}, {"name": 'signup'}, {"name": 'timeline'}, {"name": 'training'},
+                    {"name": 'webinars'}];
 
-});
-
-psdnetAppControllers.controller('featuredController', function($scope, $http){
-    GetMessages('/contentManager/retrieveMessages/featured', "featured", $http, $scope);
-});
-
-psdnetAppControllers.controller('chatController', function($scope, $interval, $http){
-   
-    //Send a request to check for new messages at intervals. Currently set to 2 secs.
-    var UpdateChat = function () {
-
-      update = $interval(function() {
-       console.log('Updating...');
-
-       $http.get('/chat/Update').then(function(response){
-    
-           
-           if(response.data.status === 'new')
-           {
-                console.log('new message incoming!');
-                console.log(response.data.message);
-           }
-      
-        });
-
-      }, 2000);
+    $scope.UpdateMessages = function(){
+        console.log('Updating messages...');
+        $http.post('/contentManager/UpdateMessages').then(function successCallback(response){
+            $scope.updateMessageResult = response.data;   
+        }, function errorCallback(response){
+            $scope.updateMessageResult = response.data;
+        });;
     };
 
-    //UpdateChat();
+
+    $scope.SelectPage = function(selected){
+        console.log($scope.messagePile);
+
+        $scope.CurrentlyEditing = selected;
+       
+        if(selected != ''){
+            $scope.hasSelectedAPage = true;
+        }
+        
+    };
+
+   
+
+    $scope.SaveChanges = function(){
+
+        
+        $http.post('/contentManager/UpdateMessages', $scope.messagePile).then(function successCallback(response){
+            $scope.updateMessageResult = response.data;   
+        }, function errorCallback(response){
+            $scope.updateMessageResult = response.data;
+        });;
+        
+    };
 
 
+   
 });
+
 
 psdnetAppControllers.controller('navbarController', function($scope){
     //
