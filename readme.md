@@ -48,6 +48,7 @@ It is loaded with each view's controller and is accessed from the scope with the
 { messages }`
 
 ##### The messages model:
+```
 {
 	main: {
 		title: String, 
@@ -77,10 +78,9 @@ It is loaded with each view's controller and is accessed from the scope with the
 
 	log: String
 }
+```
 
-`Example : 
-		<h1>{{messages.main.title}}</h1>
-
+##### Example : 
 
         <p>{{ messages.main.content }}</p>
 
@@ -101,7 +101,7 @@ It is loaded with each view's controller and is accessed from the scope with the
  			<ul>{{contact.office}}</ul>
  			<ul>{{contact.alt}}</ul>
  		</div>
- `
+ 
 
 
 #### Modules Used
