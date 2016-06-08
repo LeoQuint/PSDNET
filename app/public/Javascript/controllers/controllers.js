@@ -48,17 +48,12 @@ psdnetAppControllers.controller('homeController', ['$scope', function($scope) {
 
 psdnetAppControllers.controller('aboutController', function($scope, $http) {
     
-    $http.get('/contentManager/retrieveMessages/about')
-       .then(function(res){
-          $scope.messages = res.data;        
-        });
+    GetMessages('/contentManager/retrieveMessages/about', "about", $http, $scope);
 });
 
 psdnetAppControllers.controller('3pillarsController', function($scope, $http){
-     $http.get('/contentManager/retrieveMessages/3pillars')
-       .then(function(res){
-          $scope.messages = res.data[0].pages.pillars;        
-        });
+     
+    GetMessages('/contentManager/retrieveMessages/3pillars', "pillars", $http, $scope);
 });
 
 psdnetAppControllers.controller('contentController', function($scope, $http) {
@@ -67,7 +62,7 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
     $scope.hasSelectedAPage = false;
     $scope.CurrentlyEditing = null;
 
-    $scope.messagePile = {};
+    $scope.messagePile = { messages : {}};
 
     $scope.pages = [{"name": 'about'},{"name": 'chat'},{"name":  'community'}, {"name": 'contact'},
                     {"name": 'education'}, {"name": 'evaluation'}, {"name": 'featured'}, {"name": 'home'},
@@ -77,12 +72,7 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
 
 
     //Retrieve the messages info to populate the forms.
-    $http.get('/contentManager/retrieveMessages')
-       .then(function(res){
-        //messagePile contains all the messages from all the pages. 
-        $scope.messagePile = res.data[0].pages;  
-             
-    });
+    GetMessages('/contentManager/retrieveMessages', "", $http, $scope);
 
     $scope.UpdateMessages = function(){
         console.log('Updating messages...');
@@ -109,7 +99,7 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
 
     $scope.SaveChanges = function(){
 
-        console.log($scope.messagePile);
+        
         $http.post('/contentManager/UpdateMessages', $scope.messagePile).then(function successCallback(response){
             $scope.updateMessageResult = response.data;   
         }, function errorCallback(response){
@@ -124,8 +114,7 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
 
 
 
-psdnetAppControllers.controller('loginController', function($scope, previousLoc) {
-    
+psdnetAppControllers.controller('loginController', function($scope, $http, previousLoc) {
     $scope.message = 'this is the login controller.';
 });
 
@@ -251,6 +240,7 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
     
     var isLogged = false;
     $scope.showInfo = isLogged;
+    $scope.isAdmin = false;
 
     $http.get('/getProfil').then(function(response){
             if(response.data == false)
@@ -271,26 +261,24 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
                     previousLoc.Set('');
                     $scope.userProfile = response.data;
                     $scope.timelineEvents = $scope.userProfile.member.timeline;
-
+                    if($scope.userProfile.member.memberStatus === 'admin')
+                    {
+                        $scope.$parent.isAdmin = true;
+                    }
                 }
                 
             }
-            
-      
+
     });
-
-
-
-
-
-    
-
 
 });
 
-psdnetAppControllers.controller('chatController', function($scope, $interval, $http){
-    console.log("chat controller active.");
+psdnetAppControllers.controller('featuredController', function($scope, $http){
+    GetMessages('/contentManager/retrieveMessages/featured', "featured", $http, $scope);
+});
 
+psdnetAppControllers.controller('chatController', function($scope, $interval, $http){
+   
     //Send a request to check for new messages at intervals. Currently set to 2 secs.
     var UpdateChat = function () {
 
@@ -316,3 +304,35 @@ psdnetAppControllers.controller('chatController', function($scope, $interval, $h
 
 });
 
+psdnetAppControllers.controller('navbarController', function($scope){
+    //
+
+});
+//Parent Controller to all
+psdnetAppControllers.controller('mainController', function($scope){
+    $scope.isAdmin = false;
+   
+});
+
+//retrieves the message object for its pages.
+//Path is the route from route.js, index is the page's name in the pages object, http and scope are provide by the controller.
+function GetMessages(path, index, http, scope){
+    http.get(path)
+       .then(function(res){
+            if(index != '')
+            {
+                scope.messages = res.data[0].pages[index];  
+            }
+            else
+            {
+                scope.messagePile = res.data[0].pages;
+            }
+                
+    });
+    
+};
+//This is the old function inside each controller.
+/*$http.get('/contentManager/retrieveMessages/3pillars')
+       .then(function(res){
+          $scope.messages = res.data[0].pages.pillars;        
+        });*/

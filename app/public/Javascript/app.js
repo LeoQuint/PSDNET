@@ -36,7 +36,7 @@ psdnetApp.config(function($routeProvider) {
          //route to the featured content page
         .when('/featured', {
             templateUrl : 'views/Featured/featured.html',
-            controller  : 'contactController'
+            controller  : 'featuredController'
         })
 
          //route to the mentorship page

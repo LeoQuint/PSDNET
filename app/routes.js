@@ -284,6 +284,18 @@ module.exports = function(app, passport){
 			res.send(pillars);
 		});
 	});
+	router.get('/contentManager/retrieveMessages/featured', function(req, res){
+		var query = contentManagerModel.find({}).select({"pages.featured": 1, "_id": 0});
+
+		query.exec(function(err, featured){
+			if(err)
+			{
+				return next(err);
+			}
+			console.log(featured);
+			res.send(featured);
+		});
+	});
 
 	//Creates a new contentManager model on the database if none exists.
 	//Need to also update the data if one is found.
@@ -487,7 +499,7 @@ module.exports = function(app, passport){
 				delete updatingData._id;
 				console.log(req.body);
 				console.log('Saved Data:---------------------------');
-				
+
 				updatingData.pages = req.body;
 				console.log(updatingData);
 				contentManagerModel.update({}, updatingData, function(err, numberAffected, rawResponse) {

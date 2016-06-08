@@ -1,5 +1,5 @@
 <!-- This is the navbar that holds all the paths in the app. -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="navbarController">
 
 
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
@@ -66,16 +66,6 @@
         </ul>
     
     </li>
-    <!-- This section needs to be hidden when the user is unauthorized -->
-     <li>
-     
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#/contentManager">Content Manager</a></li>
-        </ul>
-    
-    </li>
       
     <li>
      
@@ -87,6 +77,18 @@
         </ul>
      
     </li>
+
+      <!-- This section needs to be hidden when the user is unauthorized -->
+     <li ng-show="isAdmin">
+     
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#/contentManager">Content Manager</a></li>
+        </ul>
+    
+    </li>
+
     <li><a href="#/profile" class="btn btn-default">
         <span class="fa fa-user"></span> Profile</a></li>
     <li><a href="#/login" class="btn btn-default">
