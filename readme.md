@@ -106,8 +106,9 @@ It is loaded with each view's controller and is accessed from the scope with the
 
 #### Modules Used
 
-*[angular-timeline](https://github.com/rpocklin/angular-timeline) for the timeline.
-*[angular-carousel](http://ngmodules.org/modules/angular-carousel) for the carousel.
+[angular-timeline](https://github.com/rpocklin/angular-timeline) for the timeline.
+
+[angular-carousel](http://ngmodules.org/modules/angular-carousel) for the carousel.
 
 #### Content Manager
 
