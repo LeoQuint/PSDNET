@@ -550,8 +550,6 @@ module.exports = function(app, passport){
 				'firstName' : info[0].member.firstName,
 				'lastName' : info[0].member.lastName
 			};
-
-
 			res.send(matchedMentor);
 		}); 
 	});

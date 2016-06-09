@@ -70,14 +70,15 @@ It is loaded with each view's controller and is accessed from the scope with the
 	info: String[],
 	learning: String[],
 
-	contact: {
-		name: String, 
-		title: String, 
-		email: String, 
-		phone: String, 
-		office: String, 
-		alt: String
-	},
+	contact: [
+		{	name: String, 
+			title: String, 
+			email: String, 
+			phone: String, 
+			office: String, 
+			alt: String
+		}
+	],
 
 	log: String
 }
