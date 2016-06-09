@@ -23,11 +23,11 @@ _This is held on index and is present in all pages._
   * [community.html](app/public/views/Community/community.html)
   * [forum.html](app/public/views/Community/forum.html)
 
-   `forum.html also uses [aPost.html](app/public/views/Community/aPost.html) inside a directive to display each posts.`
+   `forum.html also uses `[aPost.html](app/public/views/Community/aPost.html)` inside a directive to display each posts.`
 3. Dashboard
   * [profile.html](app/public/views/Dashboard/profile.html)
 
-   `profile.html uses [chat.html](app/public/views/Mentorship/chat.html) has a directive for displaying live chat.`
+   `profile.html uses `[chat.html](app/public/views/Mentorship/chat.html)` has a directive for displaying live chat.`
 4. Education
   * [education.html](app/public/views/Education/education.html)
   * [news.html](app/public/views/Education/news.html)
@@ -44,6 +44,13 @@ _This is held on index and is present in all pages._
   * [mentor.html](app/public/views/Mentorship/mentor.html)
   * [evaluation.html](app/public/views/Mentorship/evaluation.html)
 
+#### Content Manager
+
+`Accessible to authorized user.`
+
+#### Reset
+`The reset buttons will erase all changes made and restore the DB values to the json's.`
+
 #### Using Content
 
 `To make the website easy to edit, lots of data will be retrieved live from the DB.
@@ -51,6 +58,8 @@ It is loaded with each view's controller and is accessed from the scope with the
 **messages**`
 
 ##### The messages model:
+`The messages objects hold all the text/nformation to be displayed and changed regularly.`
+
 ```
 {
 	main: {
@@ -114,13 +123,7 @@ It is loaded with each view's controller and is accessed from the scope with the
 
 [angular-carousel](http://ngmodules.org/modules/angular-carousel) for the carousel.
 
-#### Content Manager
-
-`Accessible to authorized user.`
-
-##### Messages
-
-`The messages objects hold all the text/nformation to be displayed and changed regularly.`
+[mongodb-discuss](https://www.npmjs.com/package/mongodb-discuss) for the forum with custom changes.
 
 
 #### Models

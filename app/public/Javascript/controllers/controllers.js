@@ -293,6 +293,7 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
     $scope.updateMessageResult = '';
     $scope.hasSelectedAPage = false;
     $scope.CurrentlyEditing = null;
+    $scope.resetVerify = false;
 
     $scope.messagePile = { messages : {}};
 
@@ -302,15 +303,15 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
                     {"name": 'profile'}, {"name": 'signup'}, {"name": 'timeline'}, {"name": 'training'},
                     {"name": 'webinars'}];
 
-    $scope.UpdateMessages = function(){
-        console.log('Updating messages...');
-        $http.post('/contentManager/UpdateMessages').then(function successCallback(response){
-            $scope.updateMessageResult = response.data;   
-        }, function errorCallback(response){
-            $scope.updateMessageResult = response.data;
-        });
-    };
 
+
+    $scope.UpdateMessages = function(){
+         $http.post('/contentManager/loadMessagesFromJSON').then(function successCallback(response){
+                    $scope.updateMessageResult = response.data;   
+                }, function errorCallback(response){
+                    $scope.updateMessageResult = response.data;
+                });
+    };
 
     $scope.SelectPage = function(selected){
         $scope.CurrentlyEditing = selected;
@@ -328,7 +329,7 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
             $scope.updateMessageResult = response.data;   
         }, function errorCallback(response){
             $scope.updateMessageResult = response.data;
-        });;
+        });
         
     };
 

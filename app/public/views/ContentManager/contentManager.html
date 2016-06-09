@@ -106,7 +106,12 @@
 
 	<h4>Upload content</h4>
 	<h4>Change settings</h4>
-	<button ng-click="UpdateMessages()">Upload JSON files to DB</button>
+	<button ng-click="resetVerify = ! resetVerify">Reset Messages</button>
+	<br>
+	<p ng-show="resetVerify">This will reset ALL messages to their default values stored in json files.</p>
+	<p ng-show="resetVerify">THIS CANNOT BE UNDONE.</p>
+	<button ng-show="resetVerify" ng-click="UpdateMessages()">RESET TO DEFAULT</button>
+	
 	<h4>{{ updateMessageResult }}</h4>
 	      
 </div>
