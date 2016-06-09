@@ -48,6 +48,14 @@ module.exports = function(passport){
 						newUser.member.firstName = req.body.firstName;
 						newUser.member.lastName = req.body.lastName;
 						newUser.member.memberStatus = req.body.userType;
+
+						var emptyMentor = {
+							'email': '',
+							'firstName': '',
+							'lastName': ''
+						};
+
+						newUser.member.mentor = emptyMentor;
 						if(req.body.college != '')
 						{
 							newUser.member.school = req.body.college;

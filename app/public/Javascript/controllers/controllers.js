@@ -167,6 +167,9 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
     var isLogged = false;
     $scope.showInfo = isLogged;
     $scope.isAdmin = false;
+    $scope.hasMentor = false;
+
+    $scope.mentor = {};
 
     $http.get('/getProfil').then(function(response){
             if(response.data == false)
@@ -187,15 +190,37 @@ psdnetAppControllers.controller('profileController',  function($scope, $http, pr
                     previousLoc.Set('');
                     $scope.userProfile = response.data;
                     $scope.timelineEvents = $scope.userProfile.member.timeline;
+                    if($scope.userProfile.member.mentor.email === '')
+                    {
+                        $scope.hasMentor = false;
+                    }
+                    else
+                    {
+                        $scope.hasMentor = true;
+                    }
                     if($scope.userProfile.member.memberStatus === 'admin')
                     {
                         $scope.$parent.isAdmin = true;
                     }
+
                 }
                 
             }
 
     });
+
+
+    $scope.FindMentor = function(){
+        $http.get('/mentorships/requestMentor').then(function(response){
+           $scope.hasMentor = true;
+           console.log(response);
+           $scope.mentor.email = response.data.email;
+           $scope.mentor.firstName = response.data.firstName;
+           $scope.mentor.lastName = response.data.lastName;
+        },function errorCallback(response){
+            console.log("Error matching.");
+        });
+    };
 
 });
 psdnetAppControllers.controller('forumController', function($scope, $http, previousLoc, $location) {
@@ -283,7 +308,7 @@ psdnetAppControllers.controller('contentController', function($scope, $http) {
             $scope.updateMessageResult = response.data;   
         }, function errorCallback(response){
             $scope.updateMessageResult = response.data;
-        });;
+        });
     };
 
 

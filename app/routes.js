@@ -401,12 +401,7 @@ module.exports = function(app, passport){
 	router.post('/contentManager/UpdateMessages', function(req, res){
 
 		contentManagerModel.count( function(err, count){
-			if(err)
-			{
-				return err;
-			}
-
-			console.log('Gathering JSON files...');
+			if(err){ return err;}
 
 			var firstCMModel = new contentManagerModel();
 
@@ -415,165 +410,84 @@ module.exports = function(app, passport){
 			{
 				console.log('Creating first entry');
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_home.json', function (err, json_home) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.home = json_home;
-
 				});
-
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_login.json', function (err, msg_login) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.login = msg_login;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_pillars.json', function (err, json_pillars) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.pillars = json_pillars;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_about.json', function (err, json_about) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.about = json_about;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_contact.json', function (err, json_contact) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.contact = json_contact;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_community.json', function (err, json_community) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.community = json_community;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_forum.json', function (err, json_forum) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.forum = json_forum;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_profile.json', function (err, json_profile) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.profile = json_profile;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_education.json', function (err, json_education) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.education = json_education;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_news.json', function (err, json_news) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.news = json_news;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_podcasts.json', function (err, json_podcasts) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.podcasts = json_podcasts;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_webinars.json', function (err, json_webinars) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.webinars = json_webinars;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_featured.json', function (err, json_featured) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.featured = json_featured;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_chat.json', function (err, json_chat) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.chat = json_chat;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_evaluation.json', function (err, json_evaluation) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.evaluation = json_evaluation;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentor.json', function (err, json_mentor) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.mentor = json_mentor;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_mentorships.json', function (err, json_mentorships) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.mentorships = json_mentorships;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_signup.json', function (err, json_signup) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.signup = json_signup;
-
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_timeline.json', function (err, json_timeline) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.timeline = json_timeline;
-				
 				});
 				readJSONFile(__dirname + '/ContentManager/Resources/Messages/msg_training.json', function (err, json_training) {
-				if(err) 
-				{ 
-					throw err; 
-				}
+					if(err){ throw err; }
 					firstCMModel.pages.training = json_training;
-
 					//this is INSIDE the last readJSON function. Need to figure a better way to do this as async issues are very likely.
 					firstCMModel.save(function(err){
 								if(err)	
@@ -612,15 +526,35 @@ module.exports = function(app, passport){
 			}
 			else
 			{
-				console.log('ERROR');
-				res.send("ERROR UPDATING contentManager!!!");	
+				res.send("ERROR UPDATING contentManager. Count shows too many entries.");	
 			}
-			
-			
 		});
 	});
 
+//Mentorship Routes///////////////////////////////////////////////////////////////
+//																				//
+//							For Mentor/mentee interarctions,					//
+//	 						 training and communications.						//
+//																				//
+//////////////////////////////////////////////////////////////////////////////////
 
+	router.get('/mentorships/requestMentor', function(req,res){
+		console.log(req.body);
+		console.log(req.data);
+		var query = userProfile.find({ 'member.memberStatus' : 'mentor' });
+		query.exec(function(err, info){
+			if(err){ return next(err); }
+
+			var matchedMentor = {
+				'email': info[0].member.email,
+				'firstName' : info[0].member.firstName,
+				'lastName' : info[0].member.lastName
+			};
+
+
+			res.send(matchedMentor);
+		}); 
+	});
 
 //Other routes////////////////////////////////////////////////////////////////////
 //																				//
@@ -650,17 +584,22 @@ module.exports = function(app, passport){
 	    console.log('sending...');
 	    res.send(body);
 		});
-
-	
-		
 	});
-
-
 	///Do not remove.
 	//Let's us use router for our routes.
 	app.use('/', router);
 
 };
+
+
+
+/*Functions***********************************************************************
+**																				**
+**																				**
+**	 							FUNCTIONS  										**
+**																				**
+*********************************************************************************/
+
 //Check if the session is valid. Redirect to login page if it fails.
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated()){

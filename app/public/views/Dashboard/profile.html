@@ -26,6 +26,12 @@
 				</div>
 			</div>
 		</div>
+		
+		<button ng-show="!hasMentor" ng-click="FindMentor()">Find Mentor</button>
+		<div ng-show="hasMentor">
+			<h4>{{mentor.firstName}} {{mentor.lastName}}</h4>
+			<h5>{{mentor.email}}</h5>
+		</div>
 		<!-- The Mentor <-> Mentee chat room. -->
 		<psdnet-chat></psdnet-chat>
 	

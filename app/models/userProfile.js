@@ -33,6 +33,11 @@ var profileSchema = mongoose.Schema({
 
 		//If the user is a mentee, mentor, content creator or Admin.
 		memberStatus: String,
+		mentor: {
+			email: String,
+			firstName: String,
+			lastName: String
+		},
 		timeline: [tl_event]
 	}
 });
